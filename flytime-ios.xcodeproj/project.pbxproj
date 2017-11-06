@@ -1,0 +1,574 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D1C3A7581FB084EE00896002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A7571FB084EE00896002 /* AppDelegate.swift */; };
+		D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A7591FB084EE00896002 /* ViewController.swift */; };
+		D1C3A75D1FB084EE00896002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C3A75B1FB084EE00896002 /* Main.storyboard */; };
+		D1C3A7601FB084EE00896002 /* flytime_ios.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A75E1FB084EE00896002 /* flytime_ios.xcdatamodeld */; };
+		D1C3A7621FB084EE00896002 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1C3A7611FB084EE00896002 /* Assets.xcassets */; };
+		D1C3A7651FB084EE00896002 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C3A7631FB084EE00896002 /* LaunchScreen.storyboard */; };
+		D1C3A7701FB084EE00896002 /* flytime_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A76F1FB084EE00896002 /* flytime_iosTests.swift */; };
+		D1C3A77B1FB084EE00896002 /* flytime_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A77A1FB084EE00896002 /* flytime_iosUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D1C3A76C1FB084EE00896002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1C3A74C1FB084ED00896002 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1C3A7531FB084ED00896002;
+			remoteInfo = "flytime-ios";
+		};
+		D1C3A7771FB084EE00896002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D1C3A74C1FB084ED00896002 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D1C3A7531FB084ED00896002;
+			remoteInfo = "flytime-ios";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D1C3A7541FB084ED00896002 /* flytime-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flytime-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C3A7571FB084EE00896002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D1C3A7591FB084EE00896002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D1C3A75C1FB084EE00896002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D1C3A75F1FB084EE00896002 /* flytime_ios.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = flytime_ios.xcdatamodel; sourceTree = "<group>"; };
+		D1C3A7611FB084EE00896002 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D1C3A7641FB084EE00896002 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D1C3A7661FB084EE00896002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1C3A76B1FB084EE00896002 /* flytime-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "flytime-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C3A76F1FB084EE00896002 /* flytime_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flytime_iosTests.swift; sourceTree = "<group>"; };
+		D1C3A7711FB084EE00896002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D1C3A7761FB084EE00896002 /* flytime-iosUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "flytime-iosUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D1C3A77A1FB084EE00896002 /* flytime_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flytime_iosUITests.swift; sourceTree = "<group>"; };
+		D1C3A77C1FB084EE00896002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D1C3A7511FB084ED00896002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C3A7681FB084EE00896002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C3A7731FB084EE00896002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D1C3A74B1FB084ED00896002 = {
+			isa = PBXGroup;
+			children = (
+				D1C3A7561FB084ED00896002 /* flytime-ios */,
+				D1C3A76E1FB084EE00896002 /* flytime-iosTests */,
+				D1C3A7791FB084EE00896002 /* flytime-iosUITests */,
+				D1C3A7551FB084ED00896002 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D1C3A7551FB084ED00896002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D1C3A7541FB084ED00896002 /* flytime-ios.app */,
+				D1C3A76B1FB084EE00896002 /* flytime-iosTests.xctest */,
+				D1C3A7761FB084EE00896002 /* flytime-iosUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D1C3A7561FB084ED00896002 /* flytime-ios */ = {
+			isa = PBXGroup;
+			children = (
+				D1C3A7571FB084EE00896002 /* AppDelegate.swift */,
+				D1C3A7591FB084EE00896002 /* ViewController.swift */,
+				D1C3A75B1FB084EE00896002 /* Main.storyboard */,
+				D1C3A7611FB084EE00896002 /* Assets.xcassets */,
+				D1C3A7631FB084EE00896002 /* LaunchScreen.storyboard */,
+				D1C3A7661FB084EE00896002 /* Info.plist */,
+				D1C3A75E1FB084EE00896002 /* flytime_ios.xcdatamodeld */,
+			);
+			path = "flytime-ios";
+			sourceTree = "<group>";
+		};
+		D1C3A76E1FB084EE00896002 /* flytime-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				D1C3A76F1FB084EE00896002 /* flytime_iosTests.swift */,
+				D1C3A7711FB084EE00896002 /* Info.plist */,
+			);
+			path = "flytime-iosTests";
+			sourceTree = "<group>";
+		};
+		D1C3A7791FB084EE00896002 /* flytime-iosUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D1C3A77A1FB084EE00896002 /* flytime_iosUITests.swift */,
+				D1C3A77C1FB084EE00896002 /* Info.plist */,
+			);
+			path = "flytime-iosUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D1C3A7531FB084ED00896002 /* flytime-ios */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1C3A77F1FB084EE00896002 /* Build configuration list for PBXNativeTarget "flytime-ios" */;
+			buildPhases = (
+				D1C3A7501FB084ED00896002 /* Sources */,
+				D1C3A7511FB084ED00896002 /* Frameworks */,
+				D1C3A7521FB084ED00896002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "flytime-ios";
+			productName = "flytime-ios";
+			productReference = D1C3A7541FB084ED00896002 /* flytime-ios.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D1C3A76A1FB084EE00896002 /* flytime-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1C3A7821FB084EE00896002 /* Build configuration list for PBXNativeTarget "flytime-iosTests" */;
+			buildPhases = (
+				D1C3A7671FB084EE00896002 /* Sources */,
+				D1C3A7681FB084EE00896002 /* Frameworks */,
+				D1C3A7691FB084EE00896002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1C3A76D1FB084EE00896002 /* PBXTargetDependency */,
+			);
+			name = "flytime-iosTests";
+			productName = "flytime-iosTests";
+			productReference = D1C3A76B1FB084EE00896002 /* flytime-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D1C3A7751FB084EE00896002 /* flytime-iosUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D1C3A7851FB084EE00896002 /* Build configuration list for PBXNativeTarget "flytime-iosUITests" */;
+			buildPhases = (
+				D1C3A7721FB084EE00896002 /* Sources */,
+				D1C3A7731FB084EE00896002 /* Frameworks */,
+				D1C3A7741FB084EE00896002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1C3A7781FB084EE00896002 /* PBXTargetDependency */,
+			);
+			name = "flytime-iosUITests";
+			productName = "flytime-iosUITests";
+			productReference = D1C3A7761FB084EE00896002 /* flytime-iosUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D1C3A74C1FB084ED00896002 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0910;
+				LastUpgradeCheck = 0910;
+				ORGANIZATIONNAME = KOENIG;
+				TargetAttributes = {
+					D1C3A7531FB084ED00896002 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+					};
+					D1C3A76A1FB084EE00896002 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D1C3A7531FB084ED00896002;
+					};
+					D1C3A7751FB084EE00896002 = {
+						CreatedOnToolsVersion = 9.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = D1C3A7531FB084ED00896002;
+					};
+				};
+			};
+			buildConfigurationList = D1C3A74F1FB084ED00896002 /* Build configuration list for PBXProject "flytime-ios" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D1C3A74B1FB084ED00896002;
+			productRefGroup = D1C3A7551FB084ED00896002 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D1C3A7531FB084ED00896002 /* flytime-ios */,
+				D1C3A76A1FB084EE00896002 /* flytime-iosTests */,
+				D1C3A7751FB084EE00896002 /* flytime-iosUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D1C3A7521FB084ED00896002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1C3A7651FB084EE00896002 /* LaunchScreen.storyboard in Resources */,
+				D1C3A7621FB084EE00896002 /* Assets.xcassets in Resources */,
+				D1C3A75D1FB084EE00896002 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C3A7691FB084EE00896002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C3A7741FB084EE00896002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D1C3A7501FB084ED00896002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1C3A7601FB084EE00896002 /* flytime_ios.xcdatamodeld in Sources */,
+				D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */,
+				D1C3A7581FB084EE00896002 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C3A7671FB084EE00896002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1C3A7701FB084EE00896002 /* flytime_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D1C3A7721FB084EE00896002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D1C3A77B1FB084EE00896002 /* flytime_iosUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D1C3A76D1FB084EE00896002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1C3A7531FB084ED00896002 /* flytime-ios */;
+			targetProxy = D1C3A76C1FB084EE00896002 /* PBXContainerItemProxy */;
+		};
+		D1C3A7781FB084EE00896002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D1C3A7531FB084ED00896002 /* flytime-ios */;
+			targetProxy = D1C3A7771FB084EE00896002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D1C3A75B1FB084EE00896002 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1C3A75C1FB084EE00896002 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D1C3A7631FB084EE00896002 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D1C3A7641FB084EE00896002 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D1C3A77D1FB084EE00896002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D1C3A77E1FB084EE00896002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D1C3A7801FB084EE00896002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "flytime-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D1C3A7811FB084EE00896002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "flytime-ios/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-ios";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D1C3A7831FB084EE00896002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "flytime-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/flytime-ios.app/flytime-ios";
+			};
+			name = Debug;
+		};
+		D1C3A7841FB084EE00896002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "flytime-iosTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/flytime-ios.app/flytime-ios";
+			};
+			name = Release;
+		};
+		D1C3A7861FB084EE00896002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "flytime-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "flytime-ios";
+			};
+			name = Debug;
+		};
+		D1C3A7871FB084EE00896002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = "flytime-iosUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-iosUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "flytime-ios";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D1C3A74F1FB084ED00896002 /* Build configuration list for PBXProject "flytime-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1C3A77D1FB084EE00896002 /* Debug */,
+				D1C3A77E1FB084EE00896002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1C3A77F1FB084EE00896002 /* Build configuration list for PBXNativeTarget "flytime-ios" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1C3A7801FB084EE00896002 /* Debug */,
+				D1C3A7811FB084EE00896002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1C3A7821FB084EE00896002 /* Build configuration list for PBXNativeTarget "flytime-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1C3A7831FB084EE00896002 /* Debug */,
+				D1C3A7841FB084EE00896002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D1C3A7851FB084EE00896002 /* Build configuration list for PBXNativeTarget "flytime-iosUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D1C3A7861FB084EE00896002 /* Debug */,
+				D1C3A7871FB084EE00896002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D1C3A75E1FB084EE00896002 /* flytime_ios.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D1C3A75F1FB084EE00896002 /* flytime_ios.xcdatamodel */,
+			);
+			currentVersion = D1C3A75F1FB084EE00896002 /* flytime_ios.xcdatamodel */;
+			path = flytime_ios.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = D1C3A74C1FB084ED00896002 /* Project object */;
+}

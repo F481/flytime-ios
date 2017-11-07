@@ -16,6 +16,7 @@
 		D1C3A7701FB084EE00896002 /* flytime_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A76F1FB084EE00896002 /* flytime_iosTests.swift */; };
 		D1C3A77B1FB084EE00896002 /* flytime_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A77A1FB084EE00896002 /* flytime_iosUITests.swift */; };
 		D1CF3FD01FB1C06300FBB840 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF3FCF1FB1C06300FBB840 /* MapController.swift */; };
+		D1CF3FD21FB202D700FBB840 /* FlytimeEventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D1C3A77A1FB084EE00896002 /* flytime_iosUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = flytime_iosUITests.swift; sourceTree = "<group>"; };
 		D1C3A77C1FB084EE00896002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1CF3FCF1FB1C06300FBB840 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
+		D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlytimeEventClass.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				D1C3A7631FB084EE00896002 /* LaunchScreen.storyboard */,
 				D1C3A7661FB084EE00896002 /* Info.plist */,
 				D1C3A75E1FB084EE00896002 /* flytime_ios.xcdatamodeld */,
+				D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */,
 			);
 			path = "flytime-ios";
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1CF3FD21FB202D700FBB840 /* FlytimeEventClass.swift in Sources */,
 				D1CF3FD01FB1C06300FBB840 /* MapController.swift in Sources */,
 				D1C3A7601FB084EE00896002 /* flytime_ios.xcdatamodeld in Sources */,
 				D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */,

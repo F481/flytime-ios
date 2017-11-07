@@ -12,12 +12,14 @@ import CoreLocation
 
 class MapController: UIViewController {
     let regionRadius: CLLocationDistance = 100000
+    let initialLocation = CLLocation(latitude: 47.7814, longitude: 9.6118)
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let initialLocation = CLLocation(latitude: 47.7814, longitude: 9.6118)
+        mapView.delegate = self
+        initAnnotation()
         centerMapOnLocation(location: initialLocation)
     }
 
@@ -31,6 +33,11 @@ class MapController: UIViewController {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
+    
+    func initAnnotation (){
+        let event = FlytimeEvent(name: "DroneRacing", coordinate: CLLocationCoordinate2D(latitude: 47.7814, longitude: 9.6118))
+        mapView.addAnnotation(event)
+    }
 
     /*
     // MARK: - Navigation
@@ -42,4 +49,27 @@ class MapController: UIViewController {
     }
     */
 
+}
+extension MapController: MKMapViewDelegate {
+    // 1
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        // 2
+        guard let annotation = annotation as? FlytimeEvent else { return nil }
+        // 3
+        let identifier = "marker"
+        var view: MKMarkerAnnotationView
+        // 4
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+            as? MKMarkerAnnotationView {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            // 5
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view.canShowCallout = true
+            view.calloutOffset = CGPoint(x: -5, y: 5)
+            view.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        return view
+    }
 }

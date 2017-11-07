@@ -155,7 +155,7 @@
         <!--Map-->
         <scene sceneID="zVN-OO-1rs">
             <objects>
-                <viewController id="pnh-81-Dje" sceneMemberID="viewController">
+                <viewController id="pnh-81-Dje" customClass="MapController" customModule="flytime_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wdU-6v-oFL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,6 +169,9 @@
                         <viewLayoutGuide key="safeArea" id="2fq-Kq-lfQ"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="WPu-uK-OUl"/>
+                    <connections>
+                        <outlet property="mapView" destination="Ub6-5J-lEx" id="utD-rt-aKl"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NlO-6F-1Bc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

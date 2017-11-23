@@ -18,6 +18,7 @@ class FlytimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         lineChartView.isHidden = false
         lineChartView.noDataText = "Need Data maybe your internet sucks!!"
 

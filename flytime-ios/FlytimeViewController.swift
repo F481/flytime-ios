@@ -10,9 +10,16 @@ import UIKit
 
 class FlytimeViewController: UIViewController {
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
+    @IBOutlet weak var DiagramViewOutlet: UIView!
     
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("%1d", daySegmentedOutlet.selectedSegmentIndex)
+        if daySegmentedOutlet.selectedSegmentIndex == 1 {
+            DiagramViewOutlet.isHidden = false
+        }else{
+            DiagramViewOutlet.isHidden = true
+        }
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,5 +42,6 @@ class FlytimeViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 
 }

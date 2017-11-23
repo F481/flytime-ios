@@ -68,14 +68,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-Az-KnY">
-                                <rect key="frame" x="237" y="617" width="122" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Example delegate"/>
-                                <connections>
-                                    <segue destination="L5k-v9-rVD" kind="show" id="PDq-gB-mIf"/>
-                                </connections>
-                            </button>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I0I-mp-b0U">
                                 <rect key="frame" x="16" y="89" width="343" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -92,12 +84,28 @@
                                     <action selector="daySegmentedAction:" destination="Nwg-XW-7PI" eventType="valueChanged" id="e9u-1O-T9a"/>
                                 </connections>
                             </segmentedControl>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XcM-aj-6EY">
+                                <rect key="frame" x="16" y="164" width="343" height="204"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-Az-KnY">
+                                        <rect key="frame" x="110" y="75" width="122" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Example delegate"/>
+                                        <connections>
+                                            <segue destination="L5k-v9-rVD" kind="show" id="PDq-gB-mIf"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="r0L-gt-WfI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Flytime" id="exA-HT-u9w"/>
                     <connections>
+                        <outlet property="DiagramViewOutlet" destination="XcM-aj-6EY" id="TMI-gV-xwD"/>
                         <outlet property="daySegmentedOutlet" destination="I0I-mp-b0U" id="Y2E-7l-6TA"/>
                     </connections>
                 </viewController>

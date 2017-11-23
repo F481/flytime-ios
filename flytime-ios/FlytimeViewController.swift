@@ -18,12 +18,11 @@ class FlytimeViewController: UIViewController {
             DiagramViewOutlet.isHidden = false
         }else{
             DiagramViewOutlet.isHidden = true
-        }
-        
+        }    
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        DiagramViewOutlet.isHidden = true
         // Do any additional setup after loading the view.
     }
 

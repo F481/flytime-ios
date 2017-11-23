@@ -19,6 +19,7 @@ class FlytimeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         lineChartView.isHidden = false
+        lineChartView.noDataText = "Need Data maybe your internet sucks!!"
 
         // Do any additional setup after loading the view.
     }

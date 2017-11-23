@@ -63,24 +63,43 @@
         <!--Flytime-->
         <scene sceneID="LtD-I6-Ki3">
             <objects>
-                <viewController id="Nwg-XW-7PI" sceneMemberID="viewController">
+                <viewController id="Nwg-XW-7PI" customClass="FlytimeViewController" customModule="flytime_ios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="gTe-5D-AY5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-Az-KnY">
-                                <rect key="frame" x="141" y="298" width="122" height="30"/>
+                                <rect key="frame" x="237" y="617" width="122" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Example delegate"/>
                                 <connections>
                                     <segue destination="L5k-v9-rVD" kind="show" id="PDq-gB-mIf"/>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="I0I-mp-b0U">
+                                <rect key="frame" x="16" y="89" width="343" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="MO"/>
+                                    <segment title="DI"/>
+                                    <segment title="MI"/>
+                                    <segment title="DO"/>
+                                    <segment title="FR"/>
+                                    <segment title="SA"/>
+                                    <segment title="SO"/>
+                                </segments>
+                                <connections>
+                                    <action selector="daySegmentedAction:" destination="Nwg-XW-7PI" eventType="valueChanged" id="e9u-1O-T9a"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="r0L-gt-WfI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Flytime" id="exA-HT-u9w"/>
+                    <connections>
+                        <outlet property="daySegmentedOutlet" destination="I0I-mp-b0U" id="Y2E-7l-6TA"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ke-ZM-QDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -84,19 +84,9 @@
                                     <action selector="daySegmentedAction:" destination="Nwg-XW-7PI" eventType="valueChanged" id="e9u-1O-T9a"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XcM-aj-6EY">
-                                <rect key="frame" x="16" y="164" width="343" height="204"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-Rs-3kE" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sjx-Az-KnY">
-                                        <rect key="frame" x="110" y="75" width="122" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Example delegate"/>
-                                        <connections>
-                                            <segue destination="L5k-v9-rVD" kind="show" id="PDq-gB-mIf"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -105,29 +95,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Flytime" id="exA-HT-u9w"/>
                     <connections>
-                        <outlet property="DiagramViewOutlet" destination="XcM-aj-6EY" id="TMI-gV-xwD"/>
                         <outlet property="daySegmentedOutlet" destination="I0I-mp-b0U" id="Y2E-7l-6TA"/>
+                        <outlet property="lineChartView" destination="Qh2-Rs-3kE" id="Nsk-dj-Yp0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ke-ZM-QDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-52" y="-337.78110944527737"/>
-        </scene>
-        <!--Example Delegate-->
-        <scene sceneID="3DY-Xp-xTr">
-            <objects>
-                <viewController id="L5k-v9-rVD" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Gwc-y7-SWi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="Xip-JD-aoz"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Example Delegate" id="Gsx-7c-UnU"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nzw-sy-FS7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="798" y="-338"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BHD-J4-lOh">

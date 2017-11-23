@@ -7,22 +7,19 @@
 //
 
 import UIKit
-
+import Charts
 class FlytimeViewController: UIViewController {
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
-    @IBOutlet weak var DiagramViewOutlet: UIView!
+    @IBOutlet weak var lineChartView: LineChartView!
     
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("%1d", daySegmentedOutlet.selectedSegmentIndex)
-        if daySegmentedOutlet.selectedSegmentIndex == 1 {
-            DiagramViewOutlet.isHidden = false
-        }else{
-            DiagramViewOutlet.isHidden = true
-        }    
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        DiagramViewOutlet.isHidden = true
+        lineChartView.isHidden = false
+
         // Do any additional setup after loading the view.
     }
 

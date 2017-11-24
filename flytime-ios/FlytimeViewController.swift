@@ -29,6 +29,7 @@ class FlytimeViewController: UIViewController {
             lineChartView.xAxis.valueFormatter = XAxisValueFormatter(values: days)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             units = []
+            days = ["MO","DI","MI","DO","FR","SA","SO"]
             for i in 1..<days.count+1{
                 NSLog("dayas count = %d",i)
                 units.append(Double(i))

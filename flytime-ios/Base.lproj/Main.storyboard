@@ -68,29 +68,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="I0I-mp-b0U">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="I0I-mp-b0U">
                                 <rect key="frame" x="16" y="89" width="343" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <segments>
-                                    <segment title="MO"/>
-                                    <segment title="DI"/>
-                                    <segment title="MI"/>
-                                    <segment title="DO"/>
-                                    <segment title="FR"/>
-                                    <segment title="SA"/>
-                                    <segment title="SO"/>
+                                    <segment title="Heute"/>
+                                    <segment title="Morgen"/>
+                                    <segment title="Woche"/>
                                 </segments>
                                 <connections>
                                     <action selector="daySegmentedAction:" destination="Nwg-XW-7PI" eventType="valueChanged" id="e9u-1O-T9a"/>
                                 </connections>
                             </segmentedControl>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-Rs-3kE" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uAF-8P-fFK">
+                                <rect key="frame" x="16" y="139" width="341" height="284"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
+                                <subviews>
+                                    <view contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-Rs-3kE" customClass="LineChartView" customModule="Charts">
+                                        <rect key="frame" x="0.0" y="0.0" width="341" height="284"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="I0I-mp-b0U" firstAttribute="leading" secondItem="r0L-gt-WfI" secondAttribute="leading" constant="16" id="PIP-kV-BWm"/>
+                            <constraint firstItem="I0I-mp-b0U" firstAttribute="top" secondItem="r0L-gt-WfI" secondAttribute="top" constant="25" id="h9U-gr-aG1"/>
+                            <constraint firstItem="r0L-gt-WfI" firstAttribute="trailing" secondItem="I0I-mp-b0U" secondAttribute="trailing" constant="16" id="iRz-06-Bcc"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="r0L-gt-WfI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Flytime" id="exA-HT-u9w"/>

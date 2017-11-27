@@ -9,7 +9,8 @@
 import UIKit
 import Charts
 class FlytimeViewController: UIViewController {
-    var timesHour: [Int]!
+    var timesTodayHour: [Int]!
+    var timesTomorrowHour: [Int]!
     var timesDays: [Int]!
     var wind: [Double]!
     var temprature: [Double]!
@@ -25,14 +26,14 @@ class FlytimeViewController: UIViewController {
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
-            setChart(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
-            lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
+            setChart(dataPoints: timesTodayHour, valuesTemp: temprature, valuesWind: wind)
+            lineChartView.xAxis.setLabelCount(timesTodayHour.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
             
         }else{
-            setChart(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
-            lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
+            setChart(dataPoints: timesTodayHour, valuesTemp: temprature, valuesWind: wind)
+            lineChartView.xAxis.setLabelCount(timesTodayHour.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
         }
@@ -48,7 +49,7 @@ class FlytimeViewController: UIViewController {
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         lineChartView.noDataText = "You need to provide data for the chart."
         // will be initialized by data from server
-        timesHour = [1511780400,1511784000,1511787600,1511791200]
+        timesTodayHour = [1511780400,1511784000,1511787600,1511791200]
         timesDays = [1511780400,1511823600,1511910000,1511996400]
         temprature = [3.83,4.77,4.93,4.08]
         wind = [3.47,4.09,4.76,4.73]

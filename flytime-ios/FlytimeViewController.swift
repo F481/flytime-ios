@@ -35,8 +35,8 @@ class FlytimeViewController: UIViewController {
                 NSLog("dayas count = %d",i)
                 units.append(Double(i))
             }
-            setChartTime(dataPoints: times, values: units)
-            lineChartView.xAxis.setLabelCount(3, force: true)
+            setChartTime(dataPoints: times, valuesTemp: units, valuesWind: units)
+            lineChartView.xAxis.setLabelCount(times.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatter()
             lineChartView.notifyDataSetChanged()
             
@@ -60,7 +60,7 @@ class FlytimeViewController: UIViewController {
         lineChartView.setScaleEnabled(false)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.rightAxis.enabled = false
-        times = [1511780536, 1511787736]
+        times = [1511780536, 1511787736,1511787736+3600]
 
     }
 
@@ -94,18 +94,32 @@ class FlytimeViewController: UIViewController {
         lineChartView.chartDescription?.text = "Wetter"
     }
 
-    func setChartTime(dataPoints: [Int], values: [Double]) {
-        var dataEntries: [ChartDataEntry] = []
+    
+    func setChartTime(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
+        var lineChartData: LineChartData?
+        var dataEntriesTemp: [ChartDataEntry] = []
+        var dataEntriesWind: [ChartDataEntry] = []
     
         for i in 0..<dataPoints.count {
-            let dataEntry = ChartDataEntry(x: Double(dataPoints[i]), y: values[i] )
-            dataEntries.append(dataEntry)
+            let dataEntryTemp = ChartDataEntry(x: Double(dataPoints[i]), y: valuesTemp[i] )
+            dataEntriesTemp.append(dataEntryTemp)
+            if valuesWind != [] {
+                let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
+                dataEntriesWind.append(dataEntryWind)
+            }
         }
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "C°")
-        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "C°")
+        lineChartDataSetTemp.setColor(.orange)
+        lineChartDataSetTemp.setCircleColor(.orange)
+        if dataEntriesWind != [] {
+            let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
+            lineChartDataSetWind.setColor(.blue)
+            lineChartDataSetWind.setCircleColor(.blue)
+            lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
+        }else{
+            lineChartData = LineChartData(dataSet: lineChartDataSetTemp)
+        }
         lineChartView.data = lineChartData
-    
     }
-
 }
 

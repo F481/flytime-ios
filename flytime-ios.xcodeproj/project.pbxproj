@@ -20,7 +20,7 @@
 		D1C3A77B1FB084EE00896002 /* flytime_iosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A77A1FB084EE00896002 /* flytime_iosUITests.swift */; };
 		D1CF3FD01FB1C06300FBB840 /* MapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF3FCF1FB1C06300FBB840 /* MapController.swift */; };
 		D1CF3FD21FB202D700FBB840 /* FlytimeEventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */; };
-		D1F93E641FC8322100273A9B /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F93E631FC8322100273A9B /* File.swift */; };
+		D1F93E641FC8322100273A9B /* ValueFormatterAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F93E631FC8322100273A9B /* ValueFormatterAxis.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,7 +94,7 @@
 		D1C3A77C1FB084EE00896002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D1CF3FCF1FB1C06300FBB840 /* MapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapController.swift; sourceTree = "<group>"; };
 		D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlytimeEventClass.swift; sourceTree = "<group>"; };
-		D1F93E631FC8322100273A9B /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		D1F93E631FC8322100273A9B /* ValueFormatterAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValueFormatterAxis.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +166,7 @@
 				D1C3A75E1FB084EE00896002 /* flytime_ios.xcdatamodeld */,
 				D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */,
 				D12C1BD91FC6D80600796C6A /* FlytimeViewController.swift */,
-				D1F93E631FC8322100273A9B /* File.swift */,
+				D1F93E631FC8322100273A9B /* ValueFormatterAxis.swift */,
 			);
 			path = "flytime-ios";
 			sourceTree = "<group>";
@@ -350,7 +350,7 @@
 			files = (
 				D1CF3FD21FB202D700FBB840 /* FlytimeEventClass.swift in Sources */,
 				D12C1BDA1FC6D80600796C6A /* FlytimeViewController.swift in Sources */,
-				D1F93E641FC8322100273A9B /* File.swift in Sources */,
+				D1F93E641FC8322100273A9B /* ValueFormatterAxis.swift in Sources */,
 				D1CF3FD01FB1C06300FBB840 /* MapController.swift in Sources */,
 				D1C3A7601FB084EE00896002 /* flytime_ios.xcdatamodeld in Sources */,
 				D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */,
@@ -527,6 +527,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RT88QFCQD6;
 				INFOPLIST_FILE = "flytime-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-ios";
@@ -542,6 +543,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RT88QFCQD6;
 				INFOPLIST_FILE = "flytime-ios/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.flytime-ios";

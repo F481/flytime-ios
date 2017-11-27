@@ -25,7 +25,6 @@ class FlytimeViewController: UIViewController {
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
-            
             setChart(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
@@ -48,6 +47,7 @@ class FlytimeViewController: UIViewController {
         lineChartView.rightAxis.enabled = false
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         lineChartView.noDataText = "You need to provide data for the chart."
+        // will be initialized by data from server
         timesHour = [1511780400,1511784000,1511787600,1511791200]
         timesDays = [1511780400,1511823600,1511910000,1511996400]
         temprature = [3.83,4.77,4.93,4.08]

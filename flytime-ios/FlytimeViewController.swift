@@ -20,19 +20,19 @@ class FlytimeViewController: UIViewController {
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("%1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
-            setChartDays(dataPoints: timesDays, valuesTemp: temprature, valuesWind: wind)
+            setChart(dataPoints: timesDays, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.setLabelCount(timesDays.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             
-            setChartTime(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
+            setChart(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
             
         }else{
-            setChartTime(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
+            setChart(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
@@ -61,7 +61,7 @@ class FlytimeViewController: UIViewController {
     }
     
     
-    func setChartDays(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
+    func setChart(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
         var lineChartData: LineChartData?
         var dataEntriesTemp: [ChartDataEntry] = []
         var dataEntriesWind: [ChartDataEntry] = []
@@ -79,29 +79,6 @@ class FlytimeViewController: UIViewController {
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
-    }
-
-    
-    
-    func setChartTime(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
-        var lineChartData: LineChartData?
-        var dataEntriesTemp: [ChartDataEntry] = []
-        var dataEntriesWind: [ChartDataEntry] = []
-    
-        for i in 0..<dataPoints.count {
-            let dataEntryTemp = ChartDataEntry(x: Double(dataPoints[i]), y: valuesTemp[i] )
-            dataEntriesTemp.append(dataEntryTemp)
-            let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
-            dataEntriesWind.append(dataEntryWind)
-            }
-        let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "C°")
-        lineChartDataSetTemp.setColor(.orange)
-        lineChartDataSetTemp.setCircleColor(.orange)
-        let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
-        lineChartDataSetWind.setColor(.blue)
-        lineChartDataSetWind.setCircleColor(.blue)
-        lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
-        lineChartView.data = lineChartData
     }
 }
 

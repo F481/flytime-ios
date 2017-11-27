@@ -15,6 +15,7 @@ class FlytimeViewController: UIViewController {
                   "Apr", "May", "Jun",
                   "Jul", "Aug", "Sep",
                   "Oct", "Nov", "Dec"]
+    var times: [Int]!
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -34,9 +35,9 @@ class FlytimeViewController: UIViewController {
                 NSLog("dayas count = %d",i)
                 units.append(Double(i))
             }
-            setChart(dataPoints: days, values: units)
-            lineChartView.xAxis.setLabelCount(12, force: true)
-            lineChartView.xAxis.valueFormatter = nil
+            setChartTime(dataPoints: times, values: units)
+            lineChartView.xAxis.setLabelCount(3, force: true)
+            lineChartView.xAxis.valueFormatter = DateValueFormatter()
             lineChartView.notifyDataSetChanged()
             
         }else{
@@ -45,8 +46,8 @@ class FlytimeViewController: UIViewController {
                 NSLog("months count = %d",i)
                 units.append(Double(i))
             }
-            lineChartView.xAxis.setLabelCount(12, force: true)
-            lineChartView.xAxis.valueFormatter = nil
+            lineChartView.xAxis.setLabelCount(11, force: true)
+            lineChartView.xAxis.valueFormatter = IntAxisValueFormatter()
             setChart(dataPoints: months, values: units)
                 lineChartView.notifyDataSetChanged()
         }
@@ -54,21 +55,21 @@ class FlytimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
-
+        lineChartView.pinchZoomEnabled = false
+        lineChartView.doubleTapToZoomEnabled = false
+        lineChartView.setScaleEnabled(false)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.rightAxis.enabled = false
-        
+        times = [1511780536, 1511787736]
 
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    
     func setChart(dataPoints: [String], values: [Double]) {
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         lineChartView.noDataText = "You need to provide data for the chart."
@@ -91,24 +92,20 @@ class FlytimeViewController: UIViewController {
         let lineChartData = LineChartData(dataSets: [lineChartDataSet, lineChartDataSet2])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
-
-        
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func setChartTime(dataPoints: [Int], values: [Double]) {
+        var dataEntries: [ChartDataEntry] = []
+    
+        for i in 0..<dataPoints.count {
+            let dataEntry = ChartDataEntry(x: Double(dataPoints[i]), y: values[i] )
+            dataEntries.append(dataEntry)
+        }
+        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "C°")
+        let lineChartData = LineChartData(dataSet: lineChartDataSet)
+        lineChartView.data = lineChartData
+    
     }
-    */
-
 
 }
-extension FlytimeViewController: IAxisValueFormatter {
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-        return months[Int(value) % months.count]
-    }
-}
+

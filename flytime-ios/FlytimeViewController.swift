@@ -9,13 +9,10 @@
 import UIKit
 import Charts
 class FlytimeViewController: UIViewController {
-    var days: [String]!
-    var units: [Double]!
-    let months = ["Jan", "Feb", "Mar",
-                  "Apr", "May", "Jun",
-                  "Jul", "Aug", "Sep",
-                  "Oct", "Nov", "Dec"]
-    var times: [Int]!
+    var timesHour: [Int]!
+    var timesDays: [Int]!
+    var wind: [Double]!
+    var temprature: [Double]!
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -23,33 +20,22 @@ class FlytimeViewController: UIViewController {
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("%1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
-            units = [5.0,10.0,15.0,20.0,10.0,7.0,3.0]
-            days = ["MO","DI","MI","DO","FR","SA","SO"]
-            lineChartView.xAxis.setLabelCount(7, force: true)
-            setChart(dataPoints: days, values: units)
-            lineChartView.xAxis.valueFormatter = XAxisValueFormatter(values: days)
+            setChartDays(dataPoints: timesDays, valuesTemp: temprature, valuesWind: wind)
+            lineChartView.xAxis.setLabelCount(timesDays.count, force: true)
+            lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
+            lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
-            units = []
-            days = ["MO","DI","MI","DO","FR","SA","SO"]
-            for i in 1..<days.count+1{
-                NSLog("dayas count = %d",i)
-                units.append(Double(i))
-            }
-            setChartTime(dataPoints: times, valuesTemp: units, valuesWind: units)
-            lineChartView.xAxis.setLabelCount(times.count, force: true)
-            lineChartView.xAxis.valueFormatter = DateValueFormatter()
+            
+            setChartTime(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
+            lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
+            lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
             
         }else{
-            units = []
-            for i in 1..<months.count+1{
-                NSLog("months count = %d",i)
-                units.append(Double(i))
-            }
-            lineChartView.xAxis.setLabelCount(11, force: true)
-            lineChartView.xAxis.valueFormatter = IntAxisValueFormatter()
-            setChart(dataPoints: months, values: units)
-                lineChartView.notifyDataSetChanged()
+            setChartTime(dataPoints: timesHour, valuesTemp: temprature, valuesWind: wind)
+            lineChartView.xAxis.setLabelCount(timesHour.count, force: true)
+            lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
+            lineChartView.notifyDataSetChanged()
         }
     }
     
@@ -60,7 +46,12 @@ class FlytimeViewController: UIViewController {
         lineChartView.setScaleEnabled(false)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.rightAxis.enabled = false
-        times = [1511780536, 1511787736,1511787736+3600]
+        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        lineChartView.noDataText = "You need to provide data for the chart."
+        timesHour = [1511780400,1511784000,1511787600,1511791200]
+        timesDays = [1511780400,1511823600,1511910000,1511996400]
+        temprature = [3.83,4.77,4.93,4.08]
+        wind = [3.47,4.09,4.76,4.73]
 
     }
 
@@ -70,30 +61,27 @@ class FlytimeViewController: UIViewController {
     }
     
     
-    func setChart(dataPoints: [String], values: [Double]) {
-        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-        lineChartView.noDataText = "You need to provide data for the chart."
-        var dataEntries: [ChartDataEntry] = []
-        var dataEntries2: [ChartDataEntry] = []
-        for i in 1..<dataPoints.count {
-            NSLog("%d, %d", dataPoints.count,i)
-            let dataEntry = ChartDataEntry(x: Double(i), y: values[i])
-            dataEntries.append(dataEntry)
-           // dataEntries.append(dataEntry)
+    func setChartDays(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
+        var lineChartData: LineChartData?
+        var dataEntriesTemp: [ChartDataEntry] = []
+        var dataEntriesWind: [ChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntryTemp = ChartDataEntry(x: Double(dataPoints[i]), y: valuesTemp[i])
+            dataEntriesTemp.append(dataEntryTemp)
+            let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
+            dataEntriesWind.append(dataEntryWind)
         }
-        let dataEntry2 = ChartDataEntry(x: 3.0, y: 4.0)
-        let dataEntry3 = ChartDataEntry(x: 3.5, y: 7.0)
-        dataEntries2.append(dataEntry2)
-        dataEntries2.append(dataEntry3)
-        let lineChartDataSet2 = LineChartDataSet(values: dataEntries2, label: "km/h")
-        lineChartDataSet2.setColor(.green)
-        let lineChartDataSet = LineChartDataSet(values: dataEntries, label: "C°")
-        lineChartDataSet.setColor(.blue)
-        let lineChartData = LineChartData(dataSets: [lineChartDataSet, lineChartDataSet2])
+        let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "C°")
+        lineChartDataSetTemp.setColor(.green)
+        let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
+        lineChartDataSetWind.setColor(.blue)
+        lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
     }
 
+    
     
     func setChartTime(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
         var lineChartData: LineChartData?
@@ -103,22 +91,16 @@ class FlytimeViewController: UIViewController {
         for i in 0..<dataPoints.count {
             let dataEntryTemp = ChartDataEntry(x: Double(dataPoints[i]), y: valuesTemp[i] )
             dataEntriesTemp.append(dataEntryTemp)
-            if valuesWind != [] {
-                let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
-                dataEntriesWind.append(dataEntryWind)
+            let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
+            dataEntriesWind.append(dataEntryWind)
             }
-        }
         let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "C°")
         lineChartDataSetTemp.setColor(.orange)
         lineChartDataSetTemp.setCircleColor(.orange)
-        if dataEntriesWind != [] {
-            let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
-            lineChartDataSetWind.setColor(.blue)
-            lineChartDataSetWind.setCircleColor(.blue)
-            lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
-        }else{
-            lineChartData = LineChartData(dataSet: lineChartDataSetTemp)
-        }
+        let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
+        lineChartDataSetWind.setColor(.blue)
+        lineChartDataSetWind.setCircleColor(.blue)
+        lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
         lineChartView.data = lineChartData
     }
 }

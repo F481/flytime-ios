@@ -9,21 +9,32 @@
 import Foundation
 import Charts
 
-class XAxisValueFormatter: IAxisValueFormatter {
+public class XAxisValueFormatter: IAxisValueFormatter {
     var mValues: [String]
     
     init(values: [String]){
         mValues = values
     }
 
-    func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+   public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         return mValues[Int(value)]
     }
     
     
 }
-
-public class DateValueFormatter: NSObject, IAxisValueFormatter {
+public class DateValueFormatterDay: NSObject, IAxisValueFormatter {
+    private let dateFormatter = DateFormatter()
+    
+    override init() {
+        super.init()
+        dateFormatter.dateFormat = "EEEEEE"
+    }
+    
+    public func stringForValue(_ value: Double, axis: AxisBase?) -> String {
+        return dateFormatter.string(from: Date(timeIntervalSince1970: value))
+    }
+}
+public class DateValueFormatterHour: NSObject, IAxisValueFormatter {
     private let dateFormatter = DateFormatter()
     
     override init() {

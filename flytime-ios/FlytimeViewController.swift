@@ -19,7 +19,7 @@ class FlytimeViewController: UIViewController {
     
     
     @IBAction func daySegmentedAction(_ sender: Any) {
-        NSLog("%1d", daySegmentedOutlet.selectedSegmentIndex)
+        NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             setChart(dataPoints: timesDays, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.setLabelCount(timesDays.count, force: true)
@@ -40,13 +40,7 @@ class FlytimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        lineChartView.pinchZoomEnabled = false
-        lineChartView.doubleTapToZoomEnabled = false
-        lineChartView.setScaleEnabled(false)
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.rightAxis.enabled = false
-        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-        lineChartView.noDataText = "You need to provide data for the chart."
+        setLineChartView()
         // will be initialized by data from server
         timesTodayHour = [1511780400,1511784000,1511787600,1511791200]
         timesDays = [1511780400,1511823600,1511910000,1511996400]
@@ -78,6 +72,15 @@ class FlytimeViewController: UIViewController {
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
+    }
+    func setLineChartView() {
+        lineChartView.pinchZoomEnabled = false
+        lineChartView.doubleTapToZoomEnabled = false
+        lineChartView.setScaleEnabled(false)
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.rightAxis.enabled = false
+        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        lineChartView.noDataText = "You need to provide data for the chart."
     }
 }
 

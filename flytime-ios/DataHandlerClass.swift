@@ -20,8 +20,8 @@ class DataHandler {
         let task = session.dataTask(with: url) {(data, _, _) in
             guard let data = data else { return }
             do {
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                print(json)
+                let json = try JSONDecoder().decode(WeatherData.self, from: data)
+                print(json.daily.summary)
             } catch {
                 
             }

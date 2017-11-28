@@ -11,6 +11,7 @@
 		D12C1BF21FC6EB9700796C6A /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D12C1BEF1FC6EB5800796C6A /* Charts.framework */; };
 		D12C1BF31FC6EB9700796C6A /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D12C1BEF1FC6EB5800796C6A /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D149CB141FCD904F0044668C /* DataHandlerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149CB131FCD904F0044668C /* DataHandlerClass.swift */; };
+		D149CB161FCDCA270044668C /* WeatherDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149CB151FCDCA270044668C /* WeatherDataStruct.swift */; };
 		D1C3A7581FB084EE00896002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A7571FB084EE00896002 /* AppDelegate.swift */; };
 		D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A7591FB084EE00896002 /* ViewController.swift */; };
 		D1C3A75D1FB084EE00896002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C3A75B1FB084EE00896002 /* Main.storyboard */; };
@@ -80,6 +81,7 @@
 		D12C1BD91FC6D80600796C6A /* FlytimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlytimeViewController.swift; sourceTree = "<group>"; };
 		D12C1BE91FC6EB5800796C6A /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		D149CB131FCD904F0044668C /* DataHandlerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandlerClass.swift; sourceTree = "<group>"; };
+		D149CB151FCDCA270044668C /* WeatherDataStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataStruct.swift; sourceTree = "<group>"; };
 		D1C3A7541FB084ED00896002 /* flytime-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flytime-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C3A7571FB084EE00896002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1C3A7591FB084EE00896002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				D12C1BD91FC6D80600796C6A /* FlytimeViewController.swift */,
 				D1F93E631FC8322100273A9B /* ValueFormatterAxis.swift */,
 				D149CB131FCD904F0044668C /* DataHandlerClass.swift */,
+				D149CB151FCDCA270044668C /* WeatherDataStruct.swift */,
 			);
 			path = "flytime-ios";
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				D1C3A7601FB084EE00896002 /* flytime_ios.xcdatamodeld in Sources */,
 				D149CB141FCD904F0044668C /* DataHandlerClass.swift in Sources */,
 				D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */,
+				D149CB161FCDCA270044668C /* WeatherDataStruct.swift in Sources */,
 				D1C3A7581FB084EE00896002 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

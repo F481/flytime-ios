@@ -21,7 +21,8 @@ class DataHandler {
             guard let data = data else { return }
             do {
                 let json = try JSONDecoder().decode(WeatherData.self, from: data)
-                print(json.daily.summary)
+                print(json.daily.data[0].sunriseTime)
+                print(json.hourly.data[0].temperature)
             } catch {
                 
             }

@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 
 class DataHandler {
-    
-    
     var result: WeatherData!
+    
     func getDataFromApi () {
         let jsonUrlString = "https://api.darksky.net/forecast/30f124e4a15b39ed59823c1e116b99fa/47.81009,9.63863?units=auto&lang=de&exclude=currently,minutely"
         guard  let url = URL(string: jsonUrlString) else { return }
@@ -24,7 +23,7 @@ class DataHandler {
                 print(self.result.daily.data[0].sunriseTime)
                 print(self.result.hourly.data[0].temperature)
             } catch {
-                
+                print(error.localizedDescription)
             }
         }
         task.resume()

@@ -12,7 +12,7 @@ import UIKit
 class DataHandler {
     
     
-    var result: String!
+    var result: WeatherData!
     func getDataFromApi () {
         let jsonUrlString = "https://api.darksky.net/forecast/30f124e4a15b39ed59823c1e116b99fa/47.81009,9.63863?units=auto&lang=de&exclude=currently,minutely"
         guard  let url = URL(string: jsonUrlString) else { return }
@@ -20,9 +20,9 @@ class DataHandler {
         let task = session.dataTask(with: url) {(data, _, _) in
             guard let data = data else { return }
             do {
-                let json = try JSONDecoder().decode(WeatherData.self, from: data)
-                print(json.daily.data[0].sunriseTime)
-                print(json.hourly.data[0].temperature)
+                self.result = try JSONDecoder().decode(WeatherData.self, from: data)
+                print(self.result.daily.data[0].sunriseTime)
+                print(self.result.hourly.data[0].temperature)
             } catch {
                 
             }
@@ -30,7 +30,7 @@ class DataHandler {
         task.resume()
     }
     
-    func getDataString() -> String {
+    func getDataString() -> WeatherData {
         return self.result
     }
 }

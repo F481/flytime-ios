@@ -14,6 +14,8 @@ class FlytimeViewController: UIViewController {
     var timesDays: [Int]!
     var wind: [Double]!
     var temprature: [Double]!
+    let dataHandler = DataHandler()
+    var data: String!
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
     
@@ -21,6 +23,8 @@ class FlytimeViewController: UIViewController {
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
+            data = dataHandler.getDataString()
+            print(data)
             setChart(dataPoints: timesDays, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.setLabelCount(timesDays.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
@@ -40,6 +44,8 @@ class FlytimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        data = dataHandler.getDataFromApi()
+        print(data)
         setLineChartView()
         // will be initialized by data from server
         timesTodayHour = [1511780400,1511784000,1511787600,1511791200]
@@ -52,7 +58,6 @@ class FlytimeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     func setChart(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
         var lineChartData: LineChartData?
@@ -82,5 +87,6 @@ class FlytimeViewController: UIViewController {
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         lineChartView.noDataText = "You need to provide data for the chart."
     }
+
 }
 

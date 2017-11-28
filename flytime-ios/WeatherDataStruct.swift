@@ -30,10 +30,17 @@ struct Daily: Decodable {
 struct Data: Decodable {
     let time: Int
     let summary: String
-    let sunriseTime: Int!
     let icon: String
+    let sunriseTime: Int!
     let sunsetTime: Int!
+    let precipType: String!
+    let precipProbabilitiy: Double!
+    let windSpeed: Double!
+    let windGust: Double!
+    let windGustTime: Int!
+    let visibility: Double!
+    let temperatureMin: Double!
+    let temperatureMax: Double!
     let temperature: Double!
-    
-    
 }
+

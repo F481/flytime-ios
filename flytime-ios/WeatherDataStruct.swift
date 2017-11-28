@@ -28,9 +28,9 @@ struct Daily: Decodable {
     let data: [Data]
 }
 struct Data: Decodable {
-    let time: Int
-    let summary: String
-    let icon: String
+    let time: Int!
+    let summary: String!
+    let icon: String!
     let sunriseTime: Int!
     let sunsetTime: Int!
     let precipType: String!

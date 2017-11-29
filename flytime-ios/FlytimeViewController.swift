@@ -22,42 +22,20 @@ class FlytimeViewController: UIViewController {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             clearWeatherData()
-            for days in weatherData.daily.data {
-                if days.time != nil{
-                    times.append(days.time)
-                    temprature.append(days.temperatureMax)
-                    wind.append(days.windSpeed)
-                }
-                
-            }
+            fillWeatherDataDays()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
-            lineChartView.xAxis.setLabelCount(times.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             clearWeatherData()
-            for hours in weatherData.hourly.data {
-                if hours.time >= datahandler.sunriseTimeTomorrow && hours.time <= datahandler.sunsetTimeTomorrow{
-                    times.append(hours.time)
-                    temprature.append(hours.temperature)
-                    wind.append(hours.windSpeed)
-                }
-            }
+            fillWeatherDataTomorrowHours()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
-            lineChartView.xAxis.setLabelCount(times.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
         }else{
             clearWeatherData()
-            for hours in weatherData.hourly.data {
-                if hours.time >= datahandler.sunriseTimeToday && hours.time <= datahandler.sunsetTimeToday{
-                    times.append(hours.time)
-                    temprature.append(hours.temperature)
-                    wind.append(hours.windSpeed)
-                }
-            }
+            fillWeatherDataTodayHours()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
-            lineChartView.xAxis.setLabelCount(times.count, force: true)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
         }
@@ -95,6 +73,7 @@ class FlytimeViewController: UIViewController {
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
+        lineChartView.xAxis.setLabelCount(times.count, force: true)
     }
     func setLineChartView() {
         lineChartView.pinchZoomEnabled = false
@@ -110,6 +89,32 @@ class FlytimeViewController: UIViewController {
         wind.removeAll()
         temprature.removeAll()
     }
-    
+    func fillWeatherDataTodayHours() {
+        for hours in weatherData.hourly.data {
+            if hours.time >= datahandler.sunriseTimeToday && hours.time <= datahandler.sunsetTimeToday{
+                times.append(hours.time)
+                temprature.append(hours.temperature)
+                wind.append(hours.windSpeed)
+            }
+        }
+    }
+    func fillWeatherDataTomorrowHours() {
+        for hours in weatherData.hourly.data {
+            if hours.time >= datahandler.sunriseTimeTomorrow && hours.time <= datahandler.sunsetTimeTomorrow{
+                times.append(hours.time)
+                temprature.append(hours.temperature)
+                wind.append(hours.windSpeed)
+            }
+        }
+    }
+    func fillWeatherDataDays() {
+        for days in weatherData.daily.data {
+            if days.time != nil{
+                times.append(days.time)
+                temprature.append(days.temperatureMax)
+                wind.append(days.windSpeed)
+            }
+        }
+    }
 }
 

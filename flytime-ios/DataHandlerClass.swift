@@ -21,7 +21,7 @@ class DataHandler {
             jsonUrlString.append(String(latitude))
             jsonUrlString.append(",")
             jsonUrlString.append(String(longitude))
-            jsonUrlString.append("?units=auto&lang=de&exclude=currently,minutely")
+            jsonUrlString.append("?units=si&lang=de&exclude=minutely")
         guard  let url = URL(string: jsonUrlString) else { return }
         let session = URLSession.shared
         let task = session.dataTask(with: url) {(data, _, _) in

@@ -11,10 +11,25 @@ import Foundation
 struct WeatherData: Decodable {
     let latitude: Double
     let longitude: Double
+    let currently: Currently
     let hourly: Hourly
     let daily: Daily
 
     
+}
+struct Currently: Decodable {
+    let time: Int!
+    let summary: String!
+    let icon: String!
+    let nearestStormDistance: Double!
+    let nearestStormBearing: Int!
+    let temperature: Double!
+    let windSpeed: Double!
+    let windGust: Double!
+    let windGustTime: Int!
+    let precipType: String!
+    let precipProbabilitiy: Double!
+    let visibility: Double!
 }
 struct Hourly: Decodable {
     let summary: String

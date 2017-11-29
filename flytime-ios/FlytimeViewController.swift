@@ -43,10 +43,11 @@ class FlytimeViewController: UIViewController {
                 fillWeatherDataTomorrowHours()
                 textfield.text = "Wetter von Morgen!! \n"
                 textfield.text.append(weatherData.daily.data[1].summary)
+            }else{
+                textfield.text = weatherData.daily.data[0].summary
             }
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
-            textfield.text = weatherData.daily.data[0].summary
             lineChartView.notifyDataSetChanged()
         }
     }

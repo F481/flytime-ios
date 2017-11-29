@@ -82,19 +82,10 @@ class FlytimeViewController: UIViewController {
             let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
             dataEntriesWind.append(dataEntryWind)
         }
-        let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "C°")
-        lineChartDataSetTemp.setColor(.green)
-        lineChartDataSetTemp.lineWidth = 2.5
-        lineChartDataSetTemp.circleRadius = 3.5
-        lineChartDataSetTemp.drawCircleHoleEnabled = false
-        lineChartDataSetTemp.circleColors = [.green]
-        lineChartDataSetTemp.mode = .cubicBezier
-        let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
-        lineChartDataSetWind.setColor(.blue)
-        lineChartDataSetWind.lineWidth = 2.5
-        lineChartDataSetWind.circleRadius = 3.5
-        lineChartDataSetWind.drawCircleHoleEnabled = false
-        lineChartDataSetWind.circleColors = [.blue]
+        let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "Temperatur [C°]")
+        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetTemp, color: .red)
+        let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "Windgeschw. [m/s]")
+        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetWind, color: .blue)
        /* let gradientColorsWind = [ChartColorTemplates.colorFromString("#0000ff00").cgColor, ChartColorTemplates.colorFromString("#ffffff00").cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColorsWind as CFArray, locations: nil)
         lineChartDataSetWind.fillAlpha = 0.5
@@ -146,6 +137,14 @@ class FlytimeViewController: UIViewController {
                 wind.append(days.windSpeed)
             }
         }
+    }
+    func setPropsLineChartDataSet (lineChartDataSet: LineChartDataSet, color: UIColor){
+        lineChartDataSet.setColor(color)
+        lineChartDataSet.lineWidth = 2.5
+        lineChartDataSet.circleRadius = 3.5
+        lineChartDataSet.drawCircleHoleEnabled = false
+        lineChartDataSet.circleColors = [color]
+        lineChartDataSet.mode = .cubicBezier
     }
 }
 

@@ -84,8 +84,23 @@ class FlytimeViewController: UIViewController {
         }
         let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "C°")
         lineChartDataSetTemp.setColor(.green)
+        lineChartDataSetTemp.lineWidth = 2.5
+        lineChartDataSetTemp.circleRadius = 3.5
+        lineChartDataSetTemp.drawCircleHoleEnabled = false
+        lineChartDataSetTemp.circleColors = [.green]
+        lineChartDataSetTemp.mode = .cubicBezier
         let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "m/s")
         lineChartDataSetWind.setColor(.blue)
+        lineChartDataSetWind.lineWidth = 2.5
+        lineChartDataSetWind.circleRadius = 3.5
+        lineChartDataSetWind.drawCircleHoleEnabled = false
+        lineChartDataSetWind.circleColors = [.blue]
+       /* let gradientColorsWind = [ChartColorTemplates.colorFromString("#0000ff00").cgColor, ChartColorTemplates.colorFromString("#ffffff00").cgColor]
+        let gradient = CGGradient(colorsSpace: nil, colors: gradientColorsWind as CFArray, locations: nil)
+        lineChartDataSetWind.fillAlpha = 0.5
+        lineChartDataSetWind.fill = Fill(linearGradient: gradient!, angle: 90)
+        lineChartDataSetWind.drawFilledEnabled = true */
+        lineChartDataSetWind.mode = .cubicBezier
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"

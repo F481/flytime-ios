@@ -43,4 +43,3 @@ struct Data: Decodable {
     let temperatureMax: Double!
     let temperature: Double!
 }
-

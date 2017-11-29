@@ -14,8 +14,6 @@ struct WeatherData: Decodable {
     let currently: Currently
     let hourly: Hourly
     let daily: Daily
-
-    
 }
 struct Currently: Decodable {
     let time: Int!

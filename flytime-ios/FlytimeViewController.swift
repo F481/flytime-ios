@@ -11,6 +11,7 @@ import Charts
 class FlytimeViewController: UIViewController {
     var times = [0]
     var wind = [0.0]
+    var flag = true
     var temprature = [0.0]
     let datahandler = DataHandler()
     var weatherData: WeatherData!
@@ -32,25 +33,37 @@ class FlytimeViewController: UIViewController {
             fillWeatherDataTomorrowHours()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
-            textfield.text = weatherData.daily.data[0].summary
+            textfield.text = weatherData.daily.data[1].summary
             lineChartView.notifyDataSetChanged()
         }else{
             clearWeatherData()
             fillWeatherDataTodayHours()
+            if times.count <= 0 {
+                clearWeatherData()
+                fillWeatherDataTomorrowHours()
+                textfield.text = "Wetter von Morgen!! \n"
+                textfield.text.append(weatherData.daily.data[1].summary)
+            }
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
-            textfield.text = weatherData.daily.data[1].summary
+            textfield.text = weatherData.daily.data[0].summary
             lineChartView.notifyDataSetChanged()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        weatherData = datahandler.getWeatherData()
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setLineChartView()
-        datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
+       datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
+        while flag {
+            weatherData = datahandler.getWeatherData()
+            if weatherData != nil{
+                flag = false
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

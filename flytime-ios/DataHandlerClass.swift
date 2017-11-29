@@ -17,7 +17,6 @@ class DataHandler {
     var sunsetTimeTomorrow: Int!
 
     func getDataFromApi (latitude: Double, longitude: Double) {
-        
         var jsonUrlString = "https://api.darksky.net/forecast/30f124e4a15b39ed59823c1e116b99fa/"
             jsonUrlString.append(String(latitude))
             jsonUrlString.append(",")
@@ -38,9 +37,10 @@ class DataHandler {
             }
         }
         task.resume()
+        
     }
     
-    func getWeatherData() -> WeatherData {
+    func getWeatherData() -> WeatherData! {
         return self.weatherData
     }
 }

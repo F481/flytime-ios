@@ -16,7 +16,7 @@ class FlytimeViewController: UIViewController {
     var weatherData: WeatherData!
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
-    
+    @IBOutlet weak var textfield: UITextView!
     
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
@@ -25,18 +25,21 @@ class FlytimeViewController: UIViewController {
             fillWeatherDataDays()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
+            textfield.text = weatherData.daily.summary
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             clearWeatherData()
             fillWeatherDataTomorrowHours()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
+            textfield.text = weatherData.daily.data[0].summary
             lineChartView.notifyDataSetChanged()
         }else{
             clearWeatherData()
             fillWeatherDataTodayHours()
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
+            textfield.text = weatherData.daily.data[1].summary
             lineChartView.notifyDataSetChanged()
         }
     }

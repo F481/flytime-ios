@@ -89,6 +89,13 @@
                                     </view>
                                 </subviews>
                             </stackView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-cU-2YO">
+                                <rect key="frame" x="16" y="431" width="341" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -102,11 +109,12 @@
                     <connections>
                         <outlet property="daySegmentedOutlet" destination="I0I-mp-b0U" id="Y2E-7l-6TA"/>
                         <outlet property="lineChartView" destination="Qh2-Rs-3kE" id="Nsk-dj-Yp0"/>
+                        <outlet property="textfield" destination="KPh-cU-2YO" id="vje-Fe-SgS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ke-ZM-QDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-52" y="-337.78110944527737"/>
+            <point key="canvasLocation" x="-53.600000000000001" y="-338.68065967016497"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BHD-J4-lOh">

@@ -8,18 +8,18 @@
 
 import UIKit
 import Charts
+import CoreLocation
 class FlytimeViewController: UIViewController {
-    var times = [0]
-    var wind = [0.0]
-    var whileFlag = true
-    var temprature = [0.0]
-    var precip = [0.0]
+    var times: [Int] = [0]
+    var wind: [Double] = [0.0]
+    var whileFlag: Bool = true
+    var temprature: [Double] = [0.0]
+    var precip: [Double] = [0.0]
     let datahandler = DataHandler()
     var weatherData: WeatherData!
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var textfield: UITextView!
-    
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
@@ -98,6 +98,10 @@ class FlytimeViewController: UIViewController {
                 whileFlag = false
             }
         }
+        let rightAxis = lineChartView.rightAxis
+        rightAxis.labelTextColor = .blue
+        rightAxis.axisMinimum = 0.0
+        rightAxis.axisMaximum = 100.0
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,11 +124,14 @@ class FlytimeViewController: UIViewController {
             dataEntriesPrecip.append(dataEntryPrecip)
         }
         let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "Temperatur [C°]")
+        lineChartDataSetTemp.axisDependency = .left
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetTemp, color: .red)
         let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "Windgeschw. [m/s]")
-        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetWind, color: .blue)
+        lineChartDataSetWind.axisDependency = .left
+        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetWind, color: .green)
         let lineChartDataSetPrecip = LineChartDataSet(values: dataEntriesPrecip, label: "Niederschlags Wahrsch. [%]")
-        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .green)
+        lineChartDataSetPrecip.axisDependency = .right
+        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .blue)
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind, lineChartDataSetPrecip])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
@@ -135,7 +142,7 @@ class FlytimeViewController: UIViewController {
         lineChartView.doubleTapToZoomEnabled = false
         lineChartView.setScaleEnabled(false)
         lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.rightAxis.enabled = false
+        lineChartView.rightAxis.enabled = true
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
         lineChartView.noDataText = "You need to provide data for the chart."
     }
@@ -183,5 +190,6 @@ class FlytimeViewController: UIViewController {
         lineChartDataSet.circleColors = [color]
         lineChartDataSet.mode = .cubicBezier
     }
+   
 }
 

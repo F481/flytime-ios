@@ -12,6 +12,7 @@
 		D12C1BF31FC6EB9700796C6A /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D12C1BEF1FC6EB5800796C6A /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D149CB141FCD904F0044668C /* DataHandlerClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149CB131FCD904F0044668C /* DataHandlerClass.swift */; };
 		D149CB161FCDCA270044668C /* WeatherDataStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D149CB151FCDCA270044668C /* WeatherDataStruct.swift */; };
+		D1A7E4581FD1A55C00A9303A /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A7E4571FD1A55B00A9303A /* BalloonMarker.swift */; };
 		D1C3A7581FB084EE00896002 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A7571FB084EE00896002 /* AppDelegate.swift */; };
 		D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C3A7591FB084EE00896002 /* ViewController.swift */; };
 		D1C3A75D1FB084EE00896002 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1C3A75B1FB084EE00896002 /* Main.storyboard */; };
@@ -82,6 +83,7 @@
 		D12C1BE91FC6EB5800796C6A /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = "Charts-master/Charts.xcodeproj"; sourceTree = "<group>"; };
 		D149CB131FCD904F0044668C /* DataHandlerClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHandlerClass.swift; sourceTree = "<group>"; };
 		D149CB151FCDCA270044668C /* WeatherDataStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDataStruct.swift; sourceTree = "<group>"; };
+		D1A7E4571FD1A55B00A9303A /* BalloonMarker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BalloonMarker.swift; path = "../../../Charts-master/ChartsDemo/Swift/Components/BalloonMarker.swift"; sourceTree = "<group>"; };
 		D1C3A7541FB084ED00896002 /* flytime-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "flytime-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1C3A7571FB084EE00896002 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D1C3A7591FB084EE00896002 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -160,7 +162,8 @@
 		D1C3A7561FB084ED00896002 /* flytime-ios */ = {
 			isa = PBXGroup;
 			children = (
-				D1CF3FCF1FB1C06300FBB840 /* MapController.swift */,
+				D1D068441FD1A3A700E1D6F6 /* components */,
+				D1D068461FD1A3DD00E1D6F6 /* Views */,
 				D1C3A7571FB084EE00896002 /* AppDelegate.swift */,
 				D1C3A7591FB084EE00896002 /* ViewController.swift */,
 				D1C3A75B1FB084EE00896002 /* Main.storyboard */,
@@ -168,11 +171,6 @@
 				D1C3A7631FB084EE00896002 /* LaunchScreen.storyboard */,
 				D1C3A7661FB084EE00896002 /* Info.plist */,
 				D1C3A75E1FB084EE00896002 /* flytime_ios.xcdatamodeld */,
-				D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */,
-				D12C1BD91FC6D80600796C6A /* FlytimeViewController.swift */,
-				D1F93E631FC8322100273A9B /* ValueFormatterAxis.swift */,
-				D149CB131FCD904F0044668C /* DataHandlerClass.swift */,
-				D149CB151FCDCA270044668C /* WeatherDataStruct.swift */,
 			);
 			path = "flytime-ios";
 			sourceTree = "<group>";
@@ -193,6 +191,27 @@
 				D1C3A77C1FB084EE00896002 /* Info.plist */,
 			);
 			path = "flytime-iosUITests";
+			sourceTree = "<group>";
+		};
+		D1D068441FD1A3A700E1D6F6 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				D1A7E4571FD1A55B00A9303A /* BalloonMarker.swift */,
+				D1CF3FD11FB202D700FBB840 /* FlytimeEventClass.swift */,
+				D1F93E631FC8322100273A9B /* ValueFormatterAxis.swift */,
+				D149CB131FCD904F0044668C /* DataHandlerClass.swift */,
+				D149CB151FCDCA270044668C /* WeatherDataStruct.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		D1D068461FD1A3DD00E1D6F6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D12C1BD91FC6D80600796C6A /* FlytimeViewController.swift */,
+				D1CF3FCF1FB1C06300FBB840 /* MapController.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +382,7 @@
 				D1C3A75A1FB084EE00896002 /* ViewController.swift in Sources */,
 				D149CB161FCDCA270044668C /* WeatherDataStruct.swift in Sources */,
 				D1C3A7581FB084EE00896002 /* AppDelegate.swift in Sources */,
+				D1A7E4581FD1A55C00A9303A /* BalloonMarker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

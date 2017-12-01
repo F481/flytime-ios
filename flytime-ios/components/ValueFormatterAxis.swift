@@ -27,7 +27,7 @@ public class DateValueFormatterHour: NSObject, IAxisValueFormatter {
     
     override init() {
         super.init()
-        dateFormatter.dateFormat = "HH:mm"
+        dateFormatter.dateFormat = "HH"
     }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {

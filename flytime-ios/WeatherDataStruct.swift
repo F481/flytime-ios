@@ -47,7 +47,7 @@ struct Data: Decodable {
     let sunriseTime: Int!
     let sunsetTime: Int!
     let precipType: String!
-    let precipProbabilitiy: Double!
+    let precipProbability: Double!
     let windSpeed: Double!
     let windGust: Double!
     let windGustTime: Int!

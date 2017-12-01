@@ -11,8 +11,9 @@ import Charts
 class FlytimeViewController: UIViewController {
     var times = [0]
     var wind = [0.0]
-    var flag = true
+    var whileFlag = true
     var temprature = [0.0]
+    var precip = [0.0]
     let datahandler = DataHandler()
     var weatherData: WeatherData!
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
@@ -24,16 +25,32 @@ class FlytimeViewController: UIViewController {
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             clearWeatherData()
             fillWeatherDataDays()
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
+            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip)
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
             textfield.text = weatherData.daily.summary
+            textfield.text.append("\nNiederschlags Type = ")
+            if weatherData.daily.data[0].precipType == "snow" {
+                textfield.text.append("Schnee")
+            } else if weatherData.daily.data[0].precipType == "rain" {
+                textfield.text.append("Regen")
+            }else {
+                textfield.text.append("Hagel")
+            }
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             clearWeatherData()
             fillWeatherDataTomorrowHours()
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
+            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             textfield.text = weatherData.daily.data[1].summary
+            textfield.text.append("\nNiederschlags Type = ")
+            if weatherData.daily.data[1].precipType == "snow" {
+                textfield.text.append("Schnee")
+            } else if weatherData.daily.data[1].precipType == "rain" {
+                textfield.text.append("Regen")
+            }else {
+                textfield.text.append("Hagel")
+            }
             lineChartView.notifyDataSetChanged()
         }else{
             clearWeatherData()
@@ -43,10 +60,26 @@ class FlytimeViewController: UIViewController {
                 fillWeatherDataTomorrowHours()
                 textfield.text = "Wetter von Morgen!! \n"
                 textfield.text.append(weatherData.daily.data[1].summary)
+                textfield.text.append("\nNiederschlags Type = ")
+                if weatherData.daily.data[1].precipType == "snow" {
+                    textfield.text.append("Schnee")
+                } else if weatherData.daily.data[1].precipType == "rain" {
+                    textfield.text.append("Regen")
+                }else {
+                    textfield.text.append("Hagel")
+                }
             }else{
                 textfield.text = weatherData.daily.data[0].summary
+                textfield.text.append("\nNiederschlags Type = ")
+                if weatherData.daily.data[0].precipType == "snow" {
+                    textfield.text.append("Schnee")
+                } else if weatherData.daily.data[0].precipType == "rain" {
+                    textfield.text.append("Regen")
+                }else {
+                    textfield.text.append("Hagel")
+                }
             }
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind)
+            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip)
             lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
             lineChartView.notifyDataSetChanged()
         }
@@ -59,10 +92,10 @@ class FlytimeViewController: UIViewController {
         super.viewDidLoad()
         setLineChartView()
        datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
-        while flag {
+        while whileFlag {
             weatherData = datahandler.getWeatherData()
             if weatherData != nil{
-                flag = false
+                whileFlag = false
             }
         }
     }
@@ -72,28 +105,27 @@ class FlytimeViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setChart(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double]) {
+    func setChart(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double], valuesPrecip: [Double]) {
         var lineChartData: LineChartData?
         var dataEntriesTemp: [ChartDataEntry] = []
         var dataEntriesWind: [ChartDataEntry] = []
+        var dataEntriesPrecip: [ChartDataEntry] = []
         
         for i in 0..<dataPoints.count {
             let dataEntryTemp = ChartDataEntry(x: Double(dataPoints[i]), y: valuesTemp[i])
             dataEntriesTemp.append(dataEntryTemp)
             let dataEntryWind = ChartDataEntry(x: Double(dataPoints[i]), y: valuesWind[i])
             dataEntriesWind.append(dataEntryWind)
+            let dataEntryPrecip = ChartDataEntry(x: Double(dataPoints[i]), y: valuesPrecip[i]*100)
+            dataEntriesPrecip.append(dataEntryPrecip)
         }
         let lineChartDataSetTemp = LineChartDataSet(values: dataEntriesTemp, label: "Temperatur [C°]")
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetTemp, color: .red)
         let lineChartDataSetWind = LineChartDataSet(values: dataEntriesWind, label: "Windgeschw. [m/s]")
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetWind, color: .blue)
-       /* let gradientColorsWind = [ChartColorTemplates.colorFromString("#0000ff00").cgColor, ChartColorTemplates.colorFromString("#ffffff00").cgColor]
-        let gradient = CGGradient(colorsSpace: nil, colors: gradientColorsWind as CFArray, locations: nil)
-        lineChartDataSetWind.fillAlpha = 0.5
-        lineChartDataSetWind.fill = Fill(linearGradient: gradient!, angle: 90)
-        lineChartDataSetWind.drawFilledEnabled = true */
-        lineChartDataSetWind.mode = .cubicBezier
-        lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind])
+        let lineChartDataSetPrecip = LineChartDataSet(values: dataEntriesPrecip, label: "Niederschlags Wahrsch. [%]")
+        setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .green)
+        lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind, lineChartDataSetPrecip])
         lineChartView.data = lineChartData
         lineChartView.chartDescription?.text = "Wetter"
         lineChartView.xAxis.setLabelCount(times.count, force: true)
@@ -111,6 +143,7 @@ class FlytimeViewController: UIViewController {
         times.removeAll()
         wind.removeAll()
         temprature.removeAll()
+        precip.removeAll()
     }
     func fillWeatherDataTodayHours() {
         for hours in weatherData.hourly.data {
@@ -118,6 +151,7 @@ class FlytimeViewController: UIViewController {
                 times.append(hours.time)
                 temprature.append(hours.temperature)
                 wind.append(hours.windSpeed)
+                precip.append(hours.precipProbability)
             }
         }
     }
@@ -127,6 +161,7 @@ class FlytimeViewController: UIViewController {
                 times.append(hours.time)
                 temprature.append(hours.temperature)
                 wind.append(hours.windSpeed)
+                precip.append(hours.precipProbability)
             }
         }
     }
@@ -136,6 +171,7 @@ class FlytimeViewController: UIViewController {
                 times.append(days.time)
                 temprature.append(days.temperatureMax)
                 wind.append(days.windSpeed)
+                precip.append(days.precipProbability)
             }
         }
     }

@@ -181,9 +181,7 @@ class FlytimeViewController: UIViewController {
         actInd.center.x = uiView.center.x
         actInd.center.y = uiView.center.y-60.0
         actInd.hidesWhenStopped = true
-        
-        actInd.activityIndicatorViewStyle =
-            UIActivityIndicatorViewStyle.whiteLarge
+        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         uiView.addSubview(actInd)
         actInd.startAnimating()
     }

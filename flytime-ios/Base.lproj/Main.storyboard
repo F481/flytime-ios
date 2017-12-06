@@ -103,8 +103,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Flytime" id="exA-HT-u9w"/>
                     <connections>
+                        <outlet property="chartView" destination="Qh2-Rs-3kE" id="Nsk-dj-Yp0"/>
                         <outlet property="daySegmentedOutlet" destination="I0I-mp-b0U" id="Y2E-7l-6TA"/>
-                        <outlet property="lineChartView" destination="Qh2-Rs-3kE" id="Nsk-dj-Yp0"/>
                         <outlet property="textfield" destination="KPh-cU-2YO" id="vje-Fe-SgS"/>
                     </connections>
                 </viewController>

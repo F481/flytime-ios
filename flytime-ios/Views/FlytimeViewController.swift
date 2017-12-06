@@ -20,13 +20,14 @@ class FlytimeViewController: UIViewController {
     var weatherData: WeatherData!
     let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
-    @IBOutlet weak var lineChartView: LineChartView!
+    @IBOutlet weak var chartView: CombinedChartView!
     @IBOutlet weak var textfield: UITextView!
     
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             addWeatherWeek()
+            setBestFlyTime(dataPoints: times)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
         }else{
@@ -47,10 +48,10 @@ class FlytimeViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        showActivityIndicatory(uiView: lineChartView)
+        showActivityIndicatory(uiView: chartView)
         setLineChartView()
         datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
-        let rightAxis = lineChartView.rightAxis
+        let rightAxis = chartView.rightAxis
         rightAxis.labelTextColor = .blue
         rightAxis.axisMinimum = 0.0
         rightAxis.axisMaximum = 100.0
@@ -59,9 +60,9 @@ class FlytimeViewController: UIViewController {
                                    font: .systemFont(ofSize: 12),
                                    textColor: .white,
                                    insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
-        marker.chartView = lineChartView
+        marker.chartView = chartView
         marker.minimumSize = CGSize(width: 80, height: 40)
-        lineChartView.marker = marker
+        chartView.marker = marker
 
     }
 
@@ -94,20 +95,20 @@ class FlytimeViewController: UIViewController {
         lineChartDataSetPrecip.axisDependency = .right
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .blue)
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind, lineChartDataSetPrecip])
-        lineChartView.data = lineChartData
-        lineChartView.xAxis.setLabelCount(times.count, force: true)
+        chartView.data = lineChartData
+        chartView.xAxis.setLabelCount(times.count, force: true)
     }
     func setLineChartView() {
-        lineChartView.pinchZoomEnabled = false
-        lineChartView.doubleTapToZoomEnabled = false
-        lineChartView.setScaleEnabled(false)
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-        lineChartView.chartDescription?.enabled = true
-        lineChartView.chartDescription?.font = .systemFont(ofSize: 10)
-        lineChartView.chartDescription?.text = "Powered by Darksky.net"
-        lineChartView.chartDescription?.position = CGPoint(x: 138, y: 3)
-        lineChartView.extraTopOffset = 20
+        chartView.pinchZoomEnabled = false
+        chartView.doubleTapToZoomEnabled = false
+        chartView.setScaleEnabled(false)
+        chartView.xAxis.labelPosition = .bottom
+        chartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        chartView.chartDescription?.enabled = true
+        chartView.chartDescription?.font = .systemFont(ofSize: 10)
+        chartView.chartDescription?.text = "Powered by Darksky.net"
+        chartView.chartDescription?.position = CGPoint(x: 138, y: 3)
+        chartView.extraTopOffset = 20
     }
     func clearWeatherData() {
         times.removeAll()
@@ -179,7 +180,7 @@ class FlytimeViewController: UIViewController {
     }
     
     func showActivityIndicatory(uiView: UIView) {
-        lineChartView.noDataText = "Fetching Data..."
+        chartView.noDataText = "Fetching Data..."
         actInd.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
         actInd.center.x = uiView.center.x
         actInd.center.y = uiView.center.y-60.0
@@ -202,24 +203,27 @@ class FlytimeViewController: UIViewController {
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 0))
         }
         
-        lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
-        lineChartView.notifyDataSetChanged()
+        chartView.xAxis.valueFormatter = DateValueFormatterHour()
+        chartView.notifyDataSetChanged()
     }
     func addWeatherTomorrow() {
         clearWeatherData()
         fillWeatherDataTomorrowHours()
         setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
-        lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
+        chartView.xAxis.valueFormatter = DateValueFormatterHour()
         textfield.text = weatherData.daily.data[1].summary
-        lineChartView.notifyDataSetChanged()
+        chartView.notifyDataSetChanged()
     }
     func addWeatherWeek() {
         clearWeatherData()
         fillWeatherDataDays()
         setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 3))
-        lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
+        chartView.xAxis.valueFormatter = DateValueFormatterDay()
         textfield.text = weatherData.daily.summary
-        lineChartView.notifyDataSetChanged()
+        chartView.notifyDataSetChanged()
+    }
+    func setBestFlyTime (dataPoints: [Int]) {
+        
     }
 }
 

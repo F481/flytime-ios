@@ -9,6 +9,7 @@
 import UIKit
 import Charts
 import CoreLocation
+
 class FlytimeViewController: UIViewController {
     var times: [Int] = [0]
     var wind: [Double] = [0.0]
@@ -21,6 +22,7 @@ class FlytimeViewController: UIViewController {
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var textfield: UITextView!
+    
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
@@ -179,6 +181,7 @@ class FlytimeViewController: UIViewController {
         actInd.center.x = uiView.center.x
         actInd.center.y = uiView.center.y-60.0
         actInd.hidesWhenStopped = true
+        
         actInd.activityIndicatorViewStyle =
             UIActivityIndicatorViewStyle.whiteLarge
         uiView.addSubview(actInd)

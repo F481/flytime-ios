@@ -24,35 +24,11 @@ class FlytimeViewController: UIViewController {
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
-            clearWeatherData()
-            fillWeatherDataDays()
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 3))
-            lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
-            textfield.text = weatherData.daily.summary
-            lineChartView.notifyDataSetChanged()
+            addWeatherWeek()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
-            clearWeatherData()
-            fillWeatherDataTomorrowHours()
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
-            lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
-            textfield.text = weatherData.daily.data[1].summary
-            lineChartView.notifyDataSetChanged()
+            addWeatherTomorrow()
         }else{
-            clearWeatherData()
-            fillWeatherDataTodayHours()
-            if times.count <= 0 {
-                clearWeatherData()
-                fillWeatherDataTomorrowHours()
-                textfield.text = "Wetter von Morgen!! \n"
-                textfield.text.append(weatherData.daily.data[1].summary)
-                setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
-            }else{
-                textfield.text = weatherData.daily.data[0].summary
-                setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 0))
-            }
-
-            lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
-            lineChartView.notifyDataSetChanged()
+            addWeatherToday()
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -61,8 +37,7 @@ class FlytimeViewController: UIViewController {
             weatherData = datahandler.getWeatherData()
             if weatherData != nil{
                 actInd.stopAnimating()
-                lineChartView.noDataText = "Data Loaded"
-                lineChartView.notifyDataSetChanged()
+                addWeatherToday()
                 actInd.isHidden = true
                 whileFlag = false
             }
@@ -72,7 +47,7 @@ class FlytimeViewController: UIViewController {
         super.viewDidLoad()
         showActivityIndicatory(uiView: lineChartView)
         setLineChartView()
-       datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
+        datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
         let rightAxis = lineChartView.rightAxis
         rightAxis.labelTextColor = .blue
         rightAxis.axisMinimum = 0.0
@@ -209,6 +184,38 @@ class FlytimeViewController: UIViewController {
         uiView.addSubview(actInd)
         actInd.startAnimating()
     }
-   
+    func addWeatherToday() {
+        clearWeatherData()
+        fillWeatherDataTodayHours()
+        if times.count <= 0 {
+            clearWeatherData()
+            fillWeatherDataTomorrowHours()
+            textfield.text = "Wetter von Morgen!! \n"
+            textfield.text.append(weatherData.daily.data[1].summary)
+            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
+        }else{
+            textfield.text = weatherData.daily.data[0].summary
+            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 0))
+        }
+        
+        lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
+        lineChartView.notifyDataSetChanged()
+    }
+    func addWeatherTomorrow() {
+        clearWeatherData()
+        fillWeatherDataTomorrowHours()
+        setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
+        lineChartView.xAxis.valueFormatter = DateValueFormatterHour()
+        textfield.text = weatherData.daily.data[1].summary
+        lineChartView.notifyDataSetChanged()
+    }
+    func addWeatherWeek() {
+        clearWeatherData()
+        fillWeatherDataDays()
+        setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 3))
+        lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
+        textfield.text = weatherData.daily.summary
+        lineChartView.notifyDataSetChanged()
+    }
 }
 

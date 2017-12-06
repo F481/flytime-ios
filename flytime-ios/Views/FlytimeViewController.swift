@@ -11,6 +11,7 @@ import Charts
 import CoreLocation
 
 class FlytimeViewController: UIViewController {
+    var lineChartData: LineChartData?
     var times: [Int] = [0]
     var wind: [Double] = [0.0]
     var whileFlag: Bool = true
@@ -32,6 +33,7 @@ class FlytimeViewController: UIViewController {
             //setBestFlyTime(dataPoints: times)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
+            
         }else{
             addWeatherToday()
         }
@@ -85,7 +87,7 @@ class FlytimeViewController: UIViewController {
     }
     
     func setLineCharts(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double], valuesPrecip: [Double], labelPrecip: String) {
-        var lineChartData: LineChartData?
+
         var dataEntriesTemp: [ChartDataEntry] = []
         var dataEntriesWind: [ChartDataEntry] = []
         var dataEntriesPrecip: [ChartDataEntry] = []
@@ -109,7 +111,6 @@ class FlytimeViewController: UIViewController {
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .blue)
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind, lineChartDataSetPrecip])
         chartView.data = lineChartData
-        chartView.setNeedsDisplay()
         chartView.xAxis.setLabelCount(times.count, force: true)
     }
     func setPropsLineChartDataSet (lineChartDataSet: LineChartDataSet, color: UIColor){
@@ -205,7 +206,10 @@ class FlytimeViewController: UIViewController {
         setLineCharts(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
         chartView.xAxis.valueFormatter = DateValueFormatterHour()
         textfield.text = weatherData.daily.data[1].summary
+
+
         chartView.notifyDataSetChanged()
+
     }
     func addWeatherWeek() {
         clearWeatherData()
@@ -246,6 +250,15 @@ class FlytimeViewController: UIViewController {
         chartView.data?.notifyDataChanged()
         chartView.notifyDataSetChanged()
        // chartView.setNeedsDisplay()
+    }
+    func setChartData() {
+        let data = CombinedChartData()
+        data.lineData = self.lineChartData
+
+        
+        chartView.xAxis.axisMaximum = data.xMax + 0.25
+        
+        chartView.data = data
     }
 }
 

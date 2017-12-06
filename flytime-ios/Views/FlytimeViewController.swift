@@ -55,7 +55,7 @@ class FlytimeViewController: UIViewController {
         rightAxis.axisMinimum = 0.0
         rightAxis.axisMaximum = 100.0
         rightAxis.gridColor = .blue
-        let marker = BalloonMarker(color: UIColor(white: 180/255, alpha: 1),
+        let marker = BalloonMarker(color: .gray,
                                    font: .systemFont(ofSize: 12),
                                    textColor: .white,
                                    insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))

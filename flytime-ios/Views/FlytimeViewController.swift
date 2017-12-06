@@ -27,6 +27,9 @@ class FlytimeViewController: UIViewController {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             addWeatherWeek()
+            //clearWeatherData()
+            //fillWeatherDataDays()
+            //setBestFlyTime(dataPoints: times)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
         }else{
@@ -213,18 +216,6 @@ class FlytimeViewController: UIViewController {
         textfield.text = weatherData.daily.summary
         chartView.notifyDataSetChanged()
     }
-    func setBestFlyTime (dataPoints: [Int]) {
-        var dataEntriesFlyTime: [BarChartDataEntry] = []
-        
-        
-        for index in 3...5 {
-            let barChartEntry = BarChartDataEntry(x: Double(dataPoints[index]), y: 2)
-            dataEntriesFlyTime.append(barChartEntry)
-        }
-        let barChartDataSetFlyTime = BarChartDataSet(values: dataEntriesFlyTime, label: "test")
-        let varChartDataFlyTime = BarChartData(dataSet: barChartDataSetFlyTime)
-        chartView.data?.addDataSet(barChartDataSetFlyTime)
-    }
     
     func showActivityIndicatory(uiView: UIView) {
         chartView.noDataText = "Fetching Data..."
@@ -235,6 +226,24 @@ class FlytimeViewController: UIViewController {
         actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         uiView.addSubview(actInd)
         actInd.startAnimating()
+    }
+    func setBestFlyTime (dataPoints: [Int]) {
+        var dataEntriesFlyTime: [BarChartDataEntry] = []
+        
+        
+        for index in 3...5 {
+            let barChartEntry = BarChartDataEntry(x: Double(dataPoints[index]), y: 2)
+            dataEntriesFlyTime.append(barChartEntry)
+        }
+        let barChartDataSetFlyTime = BarChartDataSet(values: dataEntriesFlyTime, label: "test")
+        barChartDataSetFlyTime.colors = [.blue]
+        barChartDataSetFlyTime.barBorderWidth = 10
+        barChartDataSetFlyTime.barBorderColor = .green
+        let varChartDataFlyTime = BarChartData(dataSet: barChartDataSetFlyTime)
+        varChartDataFlyTime.barWidth = 0.9
+        chartView.xAxis.valueFormatter = DateValueFormatterDay()
+        chartView.data = varChartDataFlyTime
+        chartView.setNeedsDisplay()
     }
 }
 

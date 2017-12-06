@@ -95,8 +95,6 @@ class FlytimeViewController: UIViewController {
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .blue)
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind, lineChartDataSetPrecip])
         lineChartView.data = lineChartData
-        lineChartView.chartDescription?.enabled = false
-        lineChartView.chartDescription?.text = "Wetter"
         lineChartView.xAxis.setLabelCount(times.count, force: true)
     }
     func setLineChartView() {
@@ -105,6 +103,11 @@ class FlytimeViewController: UIViewController {
         lineChartView.setScaleEnabled(false)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        lineChartView.chartDescription?.enabled = true
+        lineChartView.chartDescription?.font = .systemFont(ofSize: 10)
+        lineChartView.chartDescription?.text = "Powered by Darksky.net"
+        lineChartView.chartDescription?.position = CGPoint(x: 138, y: 3)
+        lineChartView.extraTopOffset = 20
     }
     func clearWeatherData() {
         times.removeAll()

@@ -49,7 +49,7 @@ class FlytimeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivityIndicatory(uiView: chartView)
-        setLineChartView()
+        setChartView()
         datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
         let rightAxis = chartView.rightAxis
         rightAxis.labelTextColor = .blue
@@ -70,8 +70,20 @@ class FlytimeViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func setChartView() {
+        chartView.pinchZoomEnabled = false
+        chartView.doubleTapToZoomEnabled = false
+        chartView.setScaleEnabled(false)
+        chartView.xAxis.labelPosition = .bottom
+        chartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        chartView.chartDescription?.enabled = true
+        chartView.chartDescription?.font = .systemFont(ofSize: 10)
+        chartView.chartDescription?.text = "Powered by Darksky.net"
+        chartView.chartDescription?.position = CGPoint(x: 138, y: 3)
+        chartView.extraTopOffset = 20
+    }
     
-    func setChart(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double], valuesPrecip: [Double], labelPrecip: String) {
+    func setLineCharts(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double], valuesPrecip: [Double], labelPrecip: String) {
         var lineChartData: LineChartData?
         var dataEntriesTemp: [ChartDataEntry] = []
         var dataEntriesWind: [ChartDataEntry] = []
@@ -98,18 +110,39 @@ class FlytimeViewController: UIViewController {
         chartView.data = lineChartData
         chartView.xAxis.setLabelCount(times.count, force: true)
     }
-    func setLineChartView() {
-        chartView.pinchZoomEnabled = false
-        chartView.doubleTapToZoomEnabled = false
-        chartView.setScaleEnabled(false)
-        chartView.xAxis.labelPosition = .bottom
-        chartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-        chartView.chartDescription?.enabled = true
-        chartView.chartDescription?.font = .systemFont(ofSize: 10)
-        chartView.chartDescription?.text = "Powered by Darksky.net"
-        chartView.chartDescription?.position = CGPoint(x: 138, y: 3)
-        chartView.extraTopOffset = 20
+    func setPropsLineChartDataSet (lineChartDataSet: LineChartDataSet, color: UIColor){
+        lineChartDataSet.setColor(color)
+        lineChartDataSet.lineWidth = 2.5
+        lineChartDataSet.circleRadius = 3.5
+        lineChartDataSet.drawCircleHoleEnabled = false
+        lineChartDataSet.circleColors = [color]
+        lineChartDataSet.mode = .cubicBezier
     }
+    func setPrecipLabel(day: Int) -> String {
+        var precipLabel: String = "kein Niederschlag"
+        
+        if weatherData.daily.data[day].precipType != nil {
+            if weatherData.daily.data[day].precipType == "snow" {
+                precipLabel = "Schnee"
+            } else if weatherData.daily.data[day].precipType == "rain" {
+                precipLabel = "Regen"
+            }else {
+                precipLabel = "Hagel"
+            }
+            precipLabel.append("wahrsch. [%]")
+        } else if weatherData.daily.data[day].precipType == nil && weatherData.daily.data[day+1].precipType != nil  {
+            if weatherData.daily.data[day+1].precipType == "snow" {
+                precipLabel = "Schnee"
+            } else if weatherData.daily.data[day+1].precipType == "rain" {
+                precipLabel = "Regen"
+            }else {
+                precipLabel = "Hagel"
+            }
+            precipLabel.append("wahrsch. [%]")
+        }
+        return precipLabel
+    }
+    
     func clearWeatherData() {
         times.removeAll()
         wind.removeAll()
@@ -146,37 +179,42 @@ class FlytimeViewController: UIViewController {
             }
         }
     }
-    func setPropsLineChartDataSet (lineChartDataSet: LineChartDataSet, color: UIColor){
-        lineChartDataSet.setColor(color)
-        lineChartDataSet.lineWidth = 2.5
-        lineChartDataSet.circleRadius = 3.5
-        lineChartDataSet.drawCircleHoleEnabled = false
-        lineChartDataSet.circleColors = [color]
-        lineChartDataSet.mode = .cubicBezier
-    }
-    func setPrecipLabel(day: Int) -> String {
-        var precipLabel: String = "kein Niederschlag"
-        
-        if weatherData.daily.data[day].precipType != nil {
-            if weatherData.daily.data[day].precipType == "snow" {
-                precipLabel = "Schnee"
-            } else if weatherData.daily.data[day].precipType == "rain" {
-                precipLabel = "Regen"
-            }else {
-                precipLabel = "Hagel"
-            }
-            precipLabel.append("wahrsch. [%]")
-        } else if weatherData.daily.data[day].precipType == nil && weatherData.daily.data[day+1].precipType != nil  {
-            if weatherData.daily.data[day+1].precipType == "snow" {
-                precipLabel = "Schnee"
-            } else if weatherData.daily.data[day+1].precipType == "rain" {
-                precipLabel = "Regen"
-            }else {
-                precipLabel = "Hagel"
-            }
-            precipLabel.append("wahrsch. [%]")
+
+    func addWeatherToday() {
+        clearWeatherData()
+        fillWeatherDataTodayHours()
+        if times.count <= 0 {
+            clearWeatherData()
+            fillWeatherDataTomorrowHours()
+            textfield.text = "Wetter von Morgen!! \n"
+            textfield.text.append(weatherData.daily.data[1].summary)
+            setLineCharts(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
+        }else{
+            textfield.text = weatherData.daily.data[0].summary
+            setLineCharts(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 0))
         }
-        return precipLabel
+        
+        chartView.xAxis.valueFormatter = DateValueFormatterHour()
+        chartView.notifyDataSetChanged()
+    }
+    func addWeatherTomorrow() {
+        clearWeatherData()
+        fillWeatherDataTomorrowHours()
+        setLineCharts(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
+        chartView.xAxis.valueFormatter = DateValueFormatterHour()
+        textfield.text = weatherData.daily.data[1].summary
+        chartView.notifyDataSetChanged()
+    }
+    func addWeatherWeek() {
+        clearWeatherData()
+        fillWeatherDataDays()
+        setLineCharts(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 3))
+        chartView.xAxis.valueFormatter = DateValueFormatterDay()
+        textfield.text = weatherData.daily.summary
+        chartView.notifyDataSetChanged()
+    }
+    func setBestFlyTime (dataPoints: [Int]) {
+        
     }
     
     func showActivityIndicatory(uiView: UIView) {
@@ -188,42 +226,6 @@ class FlytimeViewController: UIViewController {
         actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
         uiView.addSubview(actInd)
         actInd.startAnimating()
-    }
-    func addWeatherToday() {
-        clearWeatherData()
-        fillWeatherDataTodayHours()
-        if times.count <= 0 {
-            clearWeatherData()
-            fillWeatherDataTomorrowHours()
-            textfield.text = "Wetter von Morgen!! \n"
-            textfield.text.append(weatherData.daily.data[1].summary)
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
-        }else{
-            textfield.text = weatherData.daily.data[0].summary
-            setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 0))
-        }
-        
-        chartView.xAxis.valueFormatter = DateValueFormatterHour()
-        chartView.notifyDataSetChanged()
-    }
-    func addWeatherTomorrow() {
-        clearWeatherData()
-        fillWeatherDataTomorrowHours()
-        setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 1))
-        chartView.xAxis.valueFormatter = DateValueFormatterHour()
-        textfield.text = weatherData.daily.data[1].summary
-        chartView.notifyDataSetChanged()
-    }
-    func addWeatherWeek() {
-        clearWeatherData()
-        fillWeatherDataDays()
-        setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 3))
-        chartView.xAxis.valueFormatter = DateValueFormatterDay()
-        textfield.text = weatherData.daily.summary
-        chartView.notifyDataSetChanged()
-    }
-    func setBestFlyTime (dataPoints: [Int]) {
-        
     }
 }
 

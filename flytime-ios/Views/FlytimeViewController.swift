@@ -231,19 +231,22 @@ class FlytimeViewController: UIViewController {
         var dataEntriesFlyTime: [BarChartDataEntry] = []
         
         
-        for index in 3...5 {
-            let barChartEntry = BarChartDataEntry(x: Double(dataPoints[index]), y: 2)
+        for i in 0..<dataPoints.count {
+            let barChartEntry = BarChartDataEntry(x: Double(dataPoints[i]), y: 100)
             dataEntriesFlyTime.append(barChartEntry)
         }
-        let barChartDataSetFlyTime = BarChartDataSet(values: dataEntriesFlyTime, label: "test")
-        barChartDataSetFlyTime.colors = [.blue]
-        barChartDataSetFlyTime.barBorderWidth = 10
-        barChartDataSetFlyTime.barBorderColor = .green
+        let barChartDataSetFlyTime = BarChartDataSet(values: dataEntriesFlyTime, label: "BestFlyTime")
+        barChartDataSetFlyTime.colors = ChartColorTemplates.material()
         let varChartDataFlyTime = BarChartData(dataSet: barChartDataSetFlyTime)
         varChartDataFlyTime.barWidth = 0.9
+        chartView.xAxis.labelCount = 7
+        chartView.xAxis.granularity = 1
+        
         chartView.xAxis.valueFormatter = DateValueFormatterDay()
         chartView.data = varChartDataFlyTime
-        chartView.setNeedsDisplay()
+        chartView.data?.notifyDataChanged()
+        chartView.notifyDataSetChanged()
+       // chartView.setNeedsDisplay()
     }
 }
 

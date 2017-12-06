@@ -27,7 +27,6 @@ class FlytimeViewController: UIViewController {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             addWeatherWeek()
-            setBestFlyTime(dataPoints: times)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
         }else{
@@ -108,6 +107,7 @@ class FlytimeViewController: UIViewController {
         setPropsLineChartDataSet(lineChartDataSet: lineChartDataSetPrecip, color: .blue)
         lineChartData = LineChartData(dataSets: [lineChartDataSetTemp, lineChartDataSetWind, lineChartDataSetPrecip])
         chartView.data = lineChartData
+        chartView.setNeedsDisplay()
         chartView.xAxis.setLabelCount(times.count, force: true)
     }
     func setPropsLineChartDataSet (lineChartDataSet: LineChartDataSet, color: UIColor){
@@ -214,7 +214,16 @@ class FlytimeViewController: UIViewController {
         chartView.notifyDataSetChanged()
     }
     func setBestFlyTime (dataPoints: [Int]) {
+        var dataEntriesFlyTime: [BarChartDataEntry] = []
         
+        
+        for index in 3...5 {
+            let barChartEntry = BarChartDataEntry(x: Double(dataPoints[index]), y: 2)
+            dataEntriesFlyTime.append(barChartEntry)
+        }
+        let barChartDataSetFlyTime = BarChartDataSet(values: dataEntriesFlyTime, label: "test")
+        let varChartDataFlyTime = BarChartData(dataSet: barChartDataSetFlyTime)
+        chartView.data?.addDataSet(barChartDataSetFlyTime)
     }
     
     func showActivityIndicatory(uiView: UIView) {

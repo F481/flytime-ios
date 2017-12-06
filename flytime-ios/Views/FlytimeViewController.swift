@@ -18,7 +18,7 @@ class FlytimeViewController: UIViewController {
     var precip: [Double] = [0.0]
     let datahandler = DataHandler()
     var weatherData: WeatherData!
-    let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var chartView: CombinedChartView!
     @IBOutlet weak var textfield: UITextView!
@@ -41,9 +41,8 @@ class FlytimeViewController: UIViewController {
         while whileFlag {
             weatherData = datahandler.getWeatherData()
             if weatherData != nil{
-                actInd.stopAnimating()
+                activityIndicator.stopAnimating()
                 addWeatherToday()
-                actInd.isHidden = true
                 whileFlag = false
             }
         }
@@ -219,13 +218,13 @@ class FlytimeViewController: UIViewController {
     
     func showActivityIndicatory(uiView: UIView) {
         chartView.noDataText = "Fetching Data..."
-        actInd.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
-        actInd.center.x = uiView.center.x
-        actInd.center.y = uiView.center.y-60.0
-        actInd.hidesWhenStopped = true
-        actInd.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        uiView.addSubview(actInd)
-        actInd.startAnimating()
+        activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
+        activityIndicator.center.x = uiView.center.x
+        activityIndicator.center.y = uiView.center.y-60.0
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        uiView.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
     }
     func setBestFlyTime (dataPoints: [Int]) {
         var dataEntriesFlyTime: [BarChartDataEntry] = []

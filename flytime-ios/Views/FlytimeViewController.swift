@@ -17,6 +17,7 @@ class FlytimeViewController: UIViewController {
     var precip: [Double] = [0.0]
     let datahandler = DataHandler()
     var weatherData: WeatherData!
+    let actInd: UIActivityIndicatorView = UIActivityIndicatorView()
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     @IBOutlet weak var lineChartView: LineChartView!
     @IBOutlet weak var textfield: UITextView!
@@ -28,7 +29,6 @@ class FlytimeViewController: UIViewController {
             setChart(dataPoints: times, valuesTemp: temprature, valuesWind: wind, valuesPrecip: precip, labelPrecip: setPrecipLabel(day: 3))
             lineChartView.xAxis.valueFormatter = DateValueFormatterDay()
             textfield.text = weatherData.daily.summary
-
             lineChartView.notifyDataSetChanged()
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             clearWeatherData()
@@ -57,18 +57,22 @@ class FlytimeViewController: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setLineChartView()
-       datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
         while whileFlag {
             weatherData = datahandler.getWeatherData()
             if weatherData != nil{
+                actInd.stopAnimating()
+                lineChartView.noDataText = "Data Loaded"
+                lineChartView.notifyDataSetChanged()
+                actInd.isHidden = true
                 whileFlag = false
             }
         }
+    }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showActivityIndicatory(uiView: lineChartView)
+        setLineChartView()
+       datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
         let rightAxis = lineChartView.rightAxis
         rightAxis.labelTextColor = .blue
         rightAxis.axisMinimum = 0.0
@@ -124,7 +128,6 @@ class FlytimeViewController: UIViewController {
         lineChartView.setScaleEnabled(false)
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
-        lineChartView.noDataText = "You need to provide data for the chart."
     }
     func clearWeatherData() {
         times.removeAll()
@@ -193,6 +196,18 @@ class FlytimeViewController: UIViewController {
             precipLabel.append("wahrsch. [%]")
         }
         return precipLabel
+    }
+    
+    func showActivityIndicatory(uiView: UIView) {
+        lineChartView.noDataText = "Fetching Data..."
+        actInd.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
+        actInd.center.x = uiView.center.x
+        actInd.center.y = uiView.center.y-60.0
+        actInd.hidesWhenStopped = true
+        actInd.activityIndicatorViewStyle =
+            UIActivityIndicatorViewStyle.whiteLarge
+        uiView.addSubview(actInd)
+        actInd.startAnimating()
     }
    
 }

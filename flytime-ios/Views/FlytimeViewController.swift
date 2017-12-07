@@ -28,14 +28,14 @@ class FlytimeViewController: UIViewController {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             addWeatherWeek()
-            //clearWeatherData()
-            //fillWeatherDataDays()
-            //setBestFlyTime(dataPoints: times)
+            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
+            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
             
         }else{
             addWeatherToday()
+            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -45,6 +45,7 @@ class FlytimeViewController: UIViewController {
             if weatherData != nil{
                 activityIndicator.stopAnimating()
                 addWeatherToday()
+                setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
                 whileFlag = false
             }
         }
@@ -230,35 +231,40 @@ class FlytimeViewController: UIViewController {
         uiView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
-    func setBestFlyTime (dataPoints: [Int]) {
-        var dataEntriesFlyTime: [BarChartDataEntry] = []
-        
-        
+    
+    // Function for BestFlytime it works but nice algorythm would be nice
+    func setBestFlyTime (dataPoints: [Int], valuesWind: [Double], valuesPrecip: [Double]) {
+        var dataEntriesFlyTime: [ChartDataEntry] = []
         for i in 0..<dataPoints.count {
-            let barChartEntry = BarChartDataEntry(x: Double(dataPoints[i]), y: 100)
-            dataEntriesFlyTime.append(barChartEntry)
+            if valuesWind[i] <= 6.0 && valuesPrecip[i] <= 0.3 {
+                // x -> Time ; y -> % for best flyTime 100% => BestFlytime
+                let dataEntryFlyTime = ChartDataEntry(x: Double(dataPoints[i]), y: 100)
+                dataEntriesFlyTime.append(dataEntryFlyTime)
+            }else if valuesWind[i] <= 12.0 && valuesPrecip[i] <= 0.6 {
+                let dataEntryFlyTime = ChartDataEntry(x: Double(dataPoints[i]), y: 50)
+                dataEntriesFlyTime.append(dataEntryFlyTime)
+            }else{
+                let dataEntryFlyTime = ChartDataEntry(x: Double(dataPoints[i]), y: 0)
+                dataEntriesFlyTime.append(dataEntryFlyTime)
+            }
         }
-        let barChartDataSetFlyTime = BarChartDataSet(values: dataEntriesFlyTime, label: "BestFlyTime")
-        barChartDataSetFlyTime.colors = ChartColorTemplates.material()
-        let varChartDataFlyTime = BarChartData(dataSet: barChartDataSetFlyTime)
-        varChartDataFlyTime.barWidth = 0.9
-        chartView.xAxis.labelCount = 7
-        chartView.xAxis.granularity = 1
-        
-        chartView.xAxis.valueFormatter = DateValueFormatterDay()
-        chartView.data = varChartDataFlyTime
-        chartView.data?.notifyDataChanged()
+        let lineChartDataSetBestFlyTime = LineChartDataSet(values: dataEntriesFlyTime, label: "Flytime [%]")
+        lineChartDataSetBestFlyTime.axisDependency = .right
+        lineChartDataSetBestFlyTime.setColor(UIColor(red: 240, green: 5, blue: 160, alpha: 0.7))
+        lineChartDataSetBestFlyTime.drawCircleHoleEnabled = false
+        lineChartDataSetBestFlyTime.drawCirclesEnabled = false
+        lineChartDataSetBestFlyTime.lineWidth = 3.0
+        lineChartDataSetBestFlyTime.mode = .stepped
+        let gradientColors = [ChartColorTemplates.colorFromString("#00f005a0").cgColor,
+                              ChartColorTemplates.colorFromString("#fff005a0").cgColor]
+        let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
+        lineChartDataSetBestFlyTime.fill = Fill(linearGradient: gradient, angle: 90)
+        lineChartDataSetBestFlyTime.fillAlpha = 1
+        lineChartDataSetBestFlyTime.drawFilledEnabled = true
+        chartView.data?.addDataSet(lineChartDataSetBestFlyTime)
         chartView.notifyDataSetChanged()
-       // chartView.setNeedsDisplay()
+        chartView.data?.notifyDataChanged()
     }
-    func setChartData() {
-        let data = CombinedChartData()
-        data.lineData = self.lineChartData
-
-        
-        chartView.xAxis.axisMaximum = data.xMax + 0.25
-        
-        chartView.data = data
-    }
+   
 }
 

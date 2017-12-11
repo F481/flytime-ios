@@ -28,14 +28,14 @@ class FlytimeViewController: UIViewController {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             addWeatherWeek()
-            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
+            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
-            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
+            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
             
         }else{
             addWeatherToday()
-            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
+            setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
         }
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -45,7 +45,7 @@ class FlytimeViewController: UIViewController {
             if weatherData != nil{
                 activityIndicator.stopAnimating()
                 addWeatherToday()
-                setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip)
+                setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
                 whileFlag = false
             }
         }
@@ -233,21 +233,79 @@ class FlytimeViewController: UIViewController {
     }
     
     // Function for BestFlytime it works but nice algorythm would be nice
-    func setBestFlyTime (dataPoints: [Int], valuesWind: [Double], valuesPrecip: [Double]) {
-        var dataEntriesFlyTime: [ChartDataEntry] = []
-        for i in 0..<dataPoints.count {
-            if valuesWind[i] <= 6.0 && valuesPrecip[i] <= 0.3 {
-                // x -> Time ; y -> % for best flyTime 100% => BestFlytime
-                let dataEntryFlyTime = ChartDataEntry(x: Double(dataPoints[i]), y: 100)
-                dataEntriesFlyTime.append(dataEntryFlyTime)
-            }else if valuesWind[i] <= 12.0 && valuesPrecip[i] <= 0.6 {
-                let dataEntryFlyTime = ChartDataEntry(x: Double(dataPoints[i]), y: 50)
-                dataEntriesFlyTime.append(dataEntryFlyTime)
-            }else{
-                let dataEntryFlyTime = ChartDataEntry(x: Double(dataPoints[i]), y: 0)
-                dataEntriesFlyTime.append(dataEntryFlyTime)
-            }
+    func setBestFlyTime (dataPoints: [Int], valuesWind: [Double], valuesPrecip: [Double], valuesTemp: [Double]) {
+        var results: [Result] = []
+        var bestCount: Int = 0
+        var windSpeedMax: Double = valuesWind.max()!
+        if windSpeedMax >= 10 {
+            windSpeedMax  = 10
         }
+        let windSpeedMin: Double = valuesWind.min()!
+        var dataEntriesFlyTime: [ChartDataEntry] = []
+        
+        for i in 1..<dataPoints.count {
+            var countBestFlytime: Int = 0
+            let varWind: Double = valuesWind[i-1]+valuesWind[i]/2
+            let varPrecip: Double = valuesPrecip[i-1]+valuesPrecip[i]/2
+            let varTemp: Double = valuesTemp[i-1]+valuesTemp[i]/2
+            //Calcualtes Wind
+            if varWind <= windSpeedMax {
+                if varWind < windSpeedMin+3 {
+                    countBestFlytime += 2
+                    print("wind2 ")
+                }else if varWind < windSpeedMin+6  {
+                    countBestFlytime += 1
+                    print("wind1 ")
+                }
+            }
+            // Calcualtes Precip
+            if varPrecip <= 0.5 {
+                if varPrecip <= 0.2 {
+                    countBestFlytime += 3
+                    print("precip3 ")
+                }else if varPrecip <= 0.35 {
+                    countBestFlytime += 2
+                    print("precip2 ")
+                } else {
+                    countBestFlytime += 1
+                    print("precip1 ")
+                }
+            }
+            // calcualtes Temperature
+            if varTemp >= 8 && varTemp <= 25 {
+                if varTemp <= 16 {
+                    countBestFlytime += 2
+                    print("temp2 ")
+                }else if varTemp <= 25 {
+                    countBestFlytime += 3
+                    print("temp3 ")
+                }
+            } else if varTemp >= -5 && varTemp <= 35 {
+                countBestFlytime += 1
+                print("temp1 ")
+            }
+            if countBestFlytime > bestCount {
+                bestCount = countBestFlytime
+            }
+            print(countBestFlytime)
+            
+            let dataEntryFlyTime1 = ChartDataEntry(x: Double(dataPoints[i-1]), y: 0)
+            //dataEntriesFlyTime.append(dataEntryFlyTime1)
+            let dataEntryFlyTime2 = ChartDataEntry(x: Double(dataPoints[i]), y: 0)
+            //dataEntriesFlyTime.append(dataEntryFlyTime2)
+            results.append(Result(countBestFlyTime: countBestFlytime, firstEntry: dataEntryFlyTime1, secondEntry: dataEntryFlyTime2))
+        }
+        for result in results {
+            if result.countBestFlyTime >= bestCount-1 {
+                result.firstEntry.y = 100
+                result.secondEntry.y = 100
+            }
+            dataEntriesFlyTime.append(result.firstEntry)
+            dataEntriesFlyTime.append(result.secondEntry)
+        }
+
+
+        
         let lineChartDataSetBestFlyTime = LineChartDataSet(values: dataEntriesFlyTime, label: "Flytime [%]")
         lineChartDataSetBestFlyTime.axisDependency = .right
         lineChartDataSetBestFlyTime.setColor(UIColor(red: 240, green: 5, blue: 160, alpha: 0.7))
@@ -255,8 +313,8 @@ class FlytimeViewController: UIViewController {
         lineChartDataSetBestFlyTime.drawCirclesEnabled = false
         lineChartDataSetBestFlyTime.lineWidth = 3.0
         lineChartDataSetBestFlyTime.mode = .stepped
-        let gradientColors = [ChartColorTemplates.colorFromString("#00f005a0").cgColor,
-                              ChartColorTemplates.colorFromString("#fff005a0").cgColor]
+        let gradientColors = [ChartColorTemplates.colorFromString("#c000faa0").cgColor,
+                              ChartColorTemplates.colorFromString("#0b00faa0").cgColor]
         let gradient = CGGradient(colorsSpace: nil, colors: gradientColors as CFArray, locations: nil)!
         lineChartDataSetBestFlyTime.fill = Fill(linearGradient: gradient, angle: 90)
         lineChartDataSetBestFlyTime.fillAlpha = 1

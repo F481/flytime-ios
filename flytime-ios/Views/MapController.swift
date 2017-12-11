@@ -31,8 +31,7 @@ class MapController: UIViewController {
     
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
-    }
+        mapView.setRegion(coordinateRegion, animated: true)}
     
     func initAnnotation (){
         let event = FlytimeEvent(name: "DroneRacing", coordinate: CLLocationCoordinate2D(latitude: 47.7814, longitude: 9.6118))

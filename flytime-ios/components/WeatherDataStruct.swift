@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import Charts
 struct WeatherData: Decodable {
     let latitude: Double
     let longitude: Double
@@ -55,4 +55,9 @@ struct Data: Decodable {
     let temperatureMin: Double!
     let temperatureMax: Double!
     let temperature: Double!
+}
+struct Result {
+    let countBestFlyTime: Int
+    let firstEntry: ChartDataEntry
+    let secondEntry: ChartDataEntry
 }

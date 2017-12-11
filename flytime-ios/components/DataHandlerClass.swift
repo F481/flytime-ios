@@ -5,6 +5,7 @@
 //  Created by KOENIG on 28.11.17.
 //  Copyright © 2017 KOENIG. All rights reserved.
 // http://84.128.118.79/getWeatherData.php?lat=47.81008&lng=9.63863 -> WeatherAPICall
+//https://api.darksky.net/forecast/30f124e4a15b39ed59823c1e116b99fa/47.81009,9.63863?units=auto&lang=de&exclude=minutely
 
 import Foundation
 import UIKit
@@ -17,10 +18,11 @@ class DataHandler {
     var sunsetTimeTomorrow: Int!
 
     func getDataFromApi (latitude: Double, longitude: Double) {
-        var jsonUrlString = "http://84.128.118.79/getWeatherData.php?lat="
+        var jsonUrlString = "https://api.darksky.net/forecast/30f124e4a15b39ed59823c1e116b99fa/"
             jsonUrlString.append(String(latitude))
-            jsonUrlString.append("&lng=")
+            jsonUrlString.append(",")
             jsonUrlString.append(String(longitude))
+        jsonUrlString.append("?units=auto&lang=de&exclude=minutely")
         guard  let url = URL(string: jsonUrlString) else { return }
         let session = URLSession.shared
         let task = session.dataTask(with: url) {(data, _, _) in

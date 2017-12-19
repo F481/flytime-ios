@@ -250,10 +250,10 @@ class FlytimeViewController: UIViewController {
             let varTemp: Double = valuesTemp[i-1]+valuesTemp[i]/2
             //Calcualtes Wind
             if varWind <= windSpeedMax {
-                if varWind < windSpeedMin+3 {
+                if varWind < windSpeedMin * 1.25 {
                     countBestFlytime += 2
                     print("wind2 ")
-                }else if varWind < windSpeedMin+6  {
+                }else if varWind < windSpeedMin * 1.5  {
                     countBestFlytime += 1
                     print("wind1 ")
                 }

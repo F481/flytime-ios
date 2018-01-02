@@ -85,20 +85,17 @@
                                     <action selector="daySegmentedAction:" destination="Nwg-XW-7PI" eventType="valueChanged" id="e9u-1O-T9a"/>
                                 </connections>
                             </segmentedControl>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-cU-2YO">
-                                <rect key="frame" x="441" y="80" width="216" height="285"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KPh-cU-2YO">
+                                <rect key="frame" x="10" y="336" width="647" height="29"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="216" id="UFc-BM-etc"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="uAF-8P-fFK">
-                                <rect key="frame" x="10" y="80" width="426" height="283"/>
+                                <rect key="frame" x="10" y="80" width="647" height="252"/>
                                 <subviews>
                                     <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Qh2-Rs-3kE" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="0.0" y="0.0" width="426" height="283"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="647" height="252"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
@@ -106,16 +103,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="I0I-mp-b0U" firstAttribute="trailing" secondItem="KPh-cU-2YO" secondAttribute="trailing" id="Xcn-Af-1Y3"/>
-                            <constraint firstItem="r0L-gt-WfI" firstAttribute="bottom" secondItem="uAF-8P-fFK" secondAttribute="bottom" constant="12" id="Yvw-Ew-ti4"/>
-                            <constraint firstItem="I0I-mp-b0U" firstAttribute="leading" secondItem="r0L-gt-WfI" secondAttribute="leading" constant="10" id="Zla-ft-MLF"/>
-                            <constraint firstItem="I0I-mp-b0U" firstAttribute="centerX" secondItem="gTe-5D-AY5" secondAttribute="centerX" id="bZa-DH-Thv"/>
-                            <constraint firstItem="I0I-mp-b0U" firstAttribute="top" secondItem="r0L-gt-WfI" secondAttribute="top" constant="10" id="c8y-1j-3pv"/>
-                            <constraint firstItem="uAF-8P-fFK" firstAttribute="top" secondItem="I0I-mp-b0U" secondAttribute="bottom" constant="10" id="hvZ-gK-W0g"/>
-                            <constraint firstItem="I0I-mp-b0U" firstAttribute="leading" secondItem="uAF-8P-fFK" secondAttribute="leading" id="oDg-Gt-p5M"/>
-                            <constraint firstItem="r0L-gt-WfI" firstAttribute="bottom" secondItem="KPh-cU-2YO" secondAttribute="bottom" constant="10" id="pNM-Gu-zPY"/>
-                            <constraint firstItem="uAF-8P-fFK" firstAttribute="top" secondItem="KPh-cU-2YO" secondAttribute="top" id="qEw-Ev-aPx"/>
-                            <constraint firstItem="KPh-cU-2YO" firstAttribute="leading" secondItem="uAF-8P-fFK" secondAttribute="trailing" constant="5" id="rDA-fs-6On"/>
+                            <constraint firstItem="uAF-8P-fFK" firstAttribute="leading" secondItem="r0L-gt-WfI" secondAttribute="leading" constant="10" id="4xL-Qw-TX8"/>
+                            <constraint firstItem="uAF-8P-fFK" firstAttribute="top" secondItem="I0I-mp-b0U" secondAttribute="bottom" constant="10" id="5X8-ij-nwo"/>
+                            <constraint firstItem="uAF-8P-fFK" firstAttribute="leading" secondItem="I0I-mp-b0U" secondAttribute="leading" id="6eA-9J-n9l"/>
+                            <constraint firstItem="r0L-gt-WfI" firstAttribute="trailing" secondItem="uAF-8P-fFK" secondAttribute="trailing" constant="10" id="GsF-Vb-qU5"/>
+                            <constraint firstItem="KPh-cU-2YO" firstAttribute="leading" secondItem="r0L-gt-WfI" secondAttribute="leading" constant="10" id="L9V-oA-5b9"/>
+                            <constraint firstItem="uAF-8P-fFK" firstAttribute="trailing" secondItem="I0I-mp-b0U" secondAttribute="trailing" id="RLF-Qj-Ysb"/>
+                            <constraint firstItem="r0L-gt-WfI" firstAttribute="bottom" secondItem="KPh-cU-2YO" secondAttribute="bottom" constant="10" id="URE-Zb-M3h"/>
+                            <constraint firstItem="r0L-gt-WfI" firstAttribute="trailing" secondItem="KPh-cU-2YO" secondAttribute="trailing" constant="10" id="byN-to-KAd"/>
+                            <constraint firstItem="KPh-cU-2YO" firstAttribute="top" secondItem="uAF-8P-fFK" secondAttribute="bottom" constant="4" id="mIp-XK-rTH"/>
+                            <constraint firstItem="uAF-8P-fFK" firstAttribute="top" secondItem="gTe-5D-AY5" secondAttribute="top" constant="80" id="vXR-g0-lAS"/>
+                            <constraint firstAttribute="bottom" secondItem="uAF-8P-fFK" secondAttribute="bottom" constant="43" id="yJA-mZ-3Fc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r0L-gt-WfI"/>
                     </view>
@@ -128,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Ke-ZM-QDx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-54.422788605697157" y="-340"/>
+            <point key="canvasLocation" x="-54.5" y="-340.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="BHD-J4-lOh">

@@ -235,7 +235,7 @@ class FlytimeViewController: UIViewController {
     // Function for BestFlytime it works but nice algorythm would be nice
     func setBestFlyTime (dataPoints: [Int], valuesWind: [Double], valuesPrecip: [Double], valuesTemp: [Double]) {
         var results: [Result] = []
-        var bestCount: Int = 0
+        var bestCount: Int = 1
         var windSpeedMax: Double = valuesWind.max()!
         if windSpeedMax >= 10 {
             windSpeedMax  = 10
@@ -251,26 +251,14 @@ class FlytimeViewController: UIViewController {
             //Calcualtes Wind
             if varWind <= windSpeedMax {
                 if varWind < windSpeedMin * 1.25 {
-                    countBestFlytime += 2
+                    countBestFlytime += 4
                     print("wind2 ")
                 }else if varWind < windSpeedMin * 1.5  {
-                    countBestFlytime += 1
+                    countBestFlytime += 2
                     print("wind1 ")
                 }
             }
-            // Calcualtes Precip
-            if varPrecip <= 0.5 {
-                if varPrecip <= 0.2 {
-                    countBestFlytime += 3
-                    print("precip3 ")
-                }else if varPrecip <= 0.35 {
-                    countBestFlytime += 2
-                    print("precip2 ")
-                } else {
-                    countBestFlytime += 1
-                    print("precip1 ")
-                }
-            }
+
             // calcualtes Temperature
             if varTemp >= 8 && varTemp <= 25 {
                 if varTemp <= 16 {
@@ -284,6 +272,22 @@ class FlytimeViewController: UIViewController {
                 countBestFlytime += 1
                 print("temp1 ")
             }
+            
+            // Calcualtes Precip
+            if varPrecip <= 0.6 {
+                if varPrecip <= 0.2 {
+                    countBestFlytime += 6
+                    print("precip3 ")
+                }else if varPrecip <= 0.35 {
+                    countBestFlytime += 4
+                    print("precip2 ")
+                } else {
+                    countBestFlytime += 2
+                    print("precip1 ")
+                }
+            } else {
+                countBestFlytime = -1
+            }
             if countBestFlytime > bestCount {
                 bestCount = countBestFlytime
             }
@@ -296,7 +300,7 @@ class FlytimeViewController: UIViewController {
             results.append(Result(countBestFlyTime: countBestFlytime, firstEntry: dataEntryFlyTime1, secondEntry: dataEntryFlyTime2))
         }
         for result in results {
-            if result.countBestFlyTime >= bestCount-1 {
+            if result.countBestFlyTime >= bestCount-1{
                 result.firstEntry.y = 100
                 result.secondEntry.y = 100
             }
@@ -320,6 +324,7 @@ class FlytimeViewController: UIViewController {
         lineChartDataSetBestFlyTime.fillAlpha = 1
         lineChartDataSetBestFlyTime.drawFilledEnabled = true
         chartView.data?.addDataSet(lineChartDataSetBestFlyTime)
+        
         chartView.notifyDataSetChanged()
         chartView.data?.notifyDataChanged()
     }

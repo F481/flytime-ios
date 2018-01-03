@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DjY-Vu-HFf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DjY-Vu-HFf">
     <device id="retina4_7" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Main-->
+        <!--Übersicht-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="flytime_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -18,57 +18,102 @@
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y2d-4l-VCV">
-                                <rect key="frame" x="140" y="102" width="48" height="30"/>
-                                <state key="normal" title="Gallery"/>
-                                <connections>
-                                    <segue destination="aBd-g1-f6i" kind="show" id="aul-eA-ZEi"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rdN-ag-6pi">
-                                <rect key="frame" x="497" y="102" width="30" height="30"/>
-                                <state key="normal" title="Map"/>
-                                <connections>
-                                    <segue destination="pnh-81-Dje" kind="show" id="Inh-tk-syM"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ihp-eg-dJ9">
-                                <rect key="frame" x="485" y="275" width="42" height="30"/>
-                                <state key="normal" title="Mates"/>
-                                <connections>
-                                    <segue destination="MzT-ga-5yX" kind="show" id="O5C-7L-e3w"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGo-qO-kKX">
-                                <rect key="frame" x="140" y="275" width="50" height="30"/>
-                                <state key="normal" title="Flytime"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qGo-qO-kKX">
+                                <rect key="frame" x="83" y="38" width="168" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menu_flytime"/>
                                 <connections>
                                     <segue destination="Nwg-XW-7PI" kind="show" id="P61-yV-uZa"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m1M-rA-c8x">
+                                <rect key="frame" x="332" y="0.0" width="3" height="400"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89524508248730961" green="0.89524508248730961" blue="0.89524508248730961" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YRS-9P-t9W">
+                                <rect key="frame" x="-67" y="186" width="800" height="3"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89413201808929443" green="0.89409589767456055" blue="0.89411121606826782" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ABR-BR-Z88">
+                                <rect key="frame" x="0.0" y="149" width="335" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Flytime">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Nwg-XW-7PI" kind="show" id="A2g-FW-lly"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lhm-Ou-93Q">
+                                <rect key="frame" x="416" y="40" width="168" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menu_mates"/>
+                                <connections>
+                                    <segue destination="MzT-ga-5yX" kind="show" id="EdJ-nA-d2t"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VQN-Yw-k3P">
+                                <rect key="frame" x="333" y="145" width="335" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Kontakte">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="MzT-ga-5yX" kind="show" id="YJB-5D-8ci"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ZE-ot-njD">
+                                <rect key="frame" x="83" y="212" width="168" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menu_gallery"/>
+                                <connections>
+                                    <segue destination="aBd-g1-f6i" kind="show" id="LNe-9N-NGi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v4Z-Ly-JZV">
+                                <rect key="frame" x="0.0" y="319" width="335" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Galerie">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="aBd-g1-f6i" kind="show" id="Vv2-O7-Y6y"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0l9-2y-uMg">
+                                <rect key="frame" x="415" y="212" width="168" height="106"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="menu_map"/>
+                                <connections>
+                                    <segue destination="pnh-81-Dje" kind="show" id="1F2-xU-A8U"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m42-fg-x6V">
+                                <rect key="frame" x="333" y="321" width="335" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Karte">
+                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </state>
+                                <connections>
+                                    <segue destination="pnh-81-Dje" kind="show" id="SXD-U7-aFX"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="Ihp-eg-dJ9" firstAttribute="leading" secondItem="qGo-qO-kKX" secondAttribute="trailing" constant="295" id="07f-kx-RT8"/>
-                            <constraint firstItem="rdN-ag-6pi" firstAttribute="leading" secondItem="y2d-4l-VCV" secondAttribute="trailing" constant="309" id="1ss-R3-jbK"/>
-                            <constraint firstItem="Ihp-eg-dJ9" firstAttribute="top" secondItem="rdN-ag-6pi" secondAttribute="bottom" constant="143" id="3VG-UG-GwI"/>
-                            <constraint firstItem="rdN-ag-6pi" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="3fI-So-PlT"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ihp-eg-dJ9" secondAttribute="bottom" constant="70" id="Dws-PA-1dX"/>
-                            <constraint firstItem="y2d-4l-VCV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="140" id="Ore-eA-nFm"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="rdN-ag-6pi" secondAttribute="trailing" constant="140" id="ULC-lL-MwM"/>
-                            <constraint firstItem="qGo-qO-kKX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="140" id="Vh2-dY-k9H"/>
-                            <constraint firstItem="qGo-qO-kKX" firstAttribute="top" secondItem="y2d-4l-VCV" secondAttribute="bottom" constant="143" id="e1x-5i-pdY"/>
-                            <constraint firstItem="y2d-4l-VCV" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="mkV-wT-jdA"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="qGo-qO-kKX" secondAttribute="bottom" constant="70" id="wGz-t6-sf1"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ihp-eg-dJ9" secondAttribute="trailing" constant="140" id="yF7-eX-wWu"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Main" id="Fa1-BV-Nm0"/>
+                    <navigationItem key="navigationItem" title="Übersicht" id="Fa1-BV-Nm0"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-887.20000000000005" y="-337.78110944527737"/>
+            <point key="canvasLocation" x="-887.40629685157433" y="-338.39999999999998"/>
         </scene>
         <!--Flytime-->
         <scene sceneID="LtD-I6-Ki3">
@@ -150,39 +195,63 @@
             </objects>
             <point key="canvasLocation" x="-1674" y="-338"/>
         </scene>
-        <!--Mates-->
+        <!--Kontakte-->
         <scene sceneID="2f3-vz-fs8">
             <objects>
                 <viewController id="MzT-ga-5yX" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DBh-oh-Lxu">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OT6-w8-vYM">
+                                <rect key="frame" x="276" y="193.5" width="115" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="OT6-w8-vYM" firstAttribute="centerY" secondItem="5DA-FP-xvb" secondAttribute="centerY" id="ri5-nz-RAv"/>
+                            <constraint firstItem="OT6-w8-vYM" firstAttribute="centerX" secondItem="5DA-FP-xvb" secondAttribute="centerX" id="uGB-eF-uJw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="5DA-FP-xvb"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Mates" id="M79-oV-koS"/>
+                    <navigationItem key="navigationItem" title="Kontakte" id="M79-oV-koS"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4fY-G7-LwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-887" y="400"/>
+            <point key="canvasLocation" x="-887.40629685157433" y="399.19999999999999"/>
         </scene>
-        <!--Gallery-->
+        <!--Galerie-->
         <scene sceneID="vji-pU-BbW">
             <objects>
                 <viewController id="aBd-g1-f6i" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="GLD-vs-b7u">
                         <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming soon..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R9p-wA-lZg">
+                                <rect key="frame" x="276" y="194" width="115" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="R9p-wA-lZg" firstAttribute="centerX" secondItem="d4f-9b-EhC" secondAttribute="centerX" id="LsM-wc-vbg"/>
+                            <constraint firstItem="R9p-wA-lZg" firstAttribute="centerY" secondItem="d4f-9b-EhC" secondAttribute="centerY" id="xcH-TA-h9O"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="d4f-9b-EhC"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Gallery" id="UN1-US-NDw"/>
+                    <navigationItem key="navigationItem" title="Galerie" id="UN1-US-NDw"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cgA-ty-vlU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-887" y="-1062"/>
         </scene>
-        <!--Map-->
+        <!--Karte-->
         <scene sceneID="zVN-OO-1rs">
             <objects>
                 <viewController id="pnh-81-Dje" customClass="MapController" customModule="flytime_ios" customModuleProvider="target" sceneMemberID="viewController">
@@ -203,7 +272,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2fq-Kq-lfQ"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Map" id="WPu-uK-OUl"/>
+                    <navigationItem key="navigationItem" title="Karte" id="WPu-uK-OUl"/>
                     <connections>
                         <outlet property="mapView" destination="Ub6-5J-lEx" id="utD-rt-aKl"/>
                     </connections>
@@ -213,4 +282,16 @@
             <point key="canvasLocation" x="-52.623688155922046" y="-1064.8"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="menu_flytime" width="460" height="290"/>
+        <image name="menu_gallery" width="460" height="290"/>
+        <image name="menu_map" width="460" height="290"/>
+        <image name="menu_mates" width="460" height="290"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1F2-xU-A8U"/>
+        <segue reference="LNe-9N-NGi"/>
+        <segue reference="EdJ-nA-d2t"/>
+        <segue reference="A2g-FW-lly"/>
+    </inferredMetricsTieBreakers>
 </document>

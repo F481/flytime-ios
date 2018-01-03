@@ -163,6 +163,7 @@
                             <constraint firstItem="KPh-cU-2YO" firstAttribute="top" secondItem="uAF-8P-fFK" secondAttribute="bottom" constant="4" id="mIp-XK-rTH"/>
                             <constraint firstItem="uAF-8P-fFK" firstAttribute="top" secondItem="gTe-5D-AY5" secondAttribute="top" constant="80" id="vXR-g0-lAS"/>
                             <constraint firstAttribute="bottom" secondItem="uAF-8P-fFK" secondAttribute="bottom" constant="43" id="yJA-mZ-3Fc"/>
+                            <constraint firstItem="I0I-mp-b0U" firstAttribute="top" secondItem="r0L-gt-WfI" secondAttribute="top" constant="10" id="yKa-xQ-ahq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="r0L-gt-WfI"/>
                     </view>

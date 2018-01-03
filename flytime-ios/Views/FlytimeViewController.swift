@@ -245,9 +245,9 @@ class FlytimeViewController: UIViewController {
         
         for i in 1..<dataPoints.count {
             var countBestFlytime: Int = 0
-            let varWind: Double = valuesWind[i-1]+valuesWind[i]/2
-            let varPrecip: Double = valuesPrecip[i-1]+valuesPrecip[i]/2
-            let varTemp: Double = valuesTemp[i-1]+valuesTemp[i]/2
+            let varWind: Double = (valuesWind[i-1]+valuesWind[i])/2
+            let varPrecip: Double = (valuesPrecip[i-1]+valuesPrecip[i])/2
+            let varTemp: Double = (valuesTemp[i-1]+valuesTemp[i])/2
             //Calcualtes Wind
             if varWind <= windSpeedMax {
                 if varWind < windSpeedMin * 1.25 {

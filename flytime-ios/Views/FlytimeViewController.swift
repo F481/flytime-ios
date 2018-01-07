@@ -79,7 +79,7 @@ class FlytimeViewController: UIViewController {
         chartView.doubleTapToZoomEnabled = false
         chartView.setScaleEnabled(false)
         chartView.xAxis.labelPosition = .bottom
-        chartView.backgroundColor = UIColor(red: 189/255, green: 195/255, blue: 199/255, alpha: 1)
+        chartView.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
         chartView.chartDescription?.enabled = true
         chartView.chartDescription?.font = .systemFont(ofSize: 10)
         chartView.chartDescription?.text = "Powered by Darksky.net"

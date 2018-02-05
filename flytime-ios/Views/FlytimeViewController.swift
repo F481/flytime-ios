@@ -49,7 +49,6 @@ class FlytimeViewController: UIViewController {
         }else if daySegmentedOutlet.selectedSegmentIndex == 1 {
             addWeatherTomorrow()
             setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
-            
         }else{
             addWeatherToday()
             setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)

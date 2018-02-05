@@ -2,8 +2,7 @@
 //  FlytimeViewController.swift
 //  flytime-ios
 //
-//  Created by KOENIG on 23.11.17.
-//  Copyright © 2017 KOENIG. All rights reserved.
+//  Created by FRICK ; KOENIG on 23.11.17.
 //
 
 import UIKit
@@ -38,6 +37,8 @@ class FlytimeViewController: UIViewController {
             setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
         }
     }
+    
+    // Sets the initial Data and show ChartView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         while whileFlag {
@@ -48,13 +49,34 @@ class FlytimeViewController: UIViewController {
                 setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
                 whileFlag = false
             }
+            // TODO Exception Handling, no Connection
         }
     }
+    
+    // Init ChartView
+    // Fetches the Weatherdata while view is loading
     override func viewDidLoad() {
         super.viewDidLoad()
         showActivityIndicatory(uiView: chartView)
         setChartView()
         datahandler.getDataFromApi(latitude: 47.81009, longitude: 9.63863)
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+    
+    func setChartView() {
+        chartView.pinchZoomEnabled = false
+        chartView.doubleTapToZoomEnabled = false
+        chartView.setScaleEnabled(false)
+        chartView.xAxis.labelPosition = .bottom
+        chartView.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
+        chartView.chartDescription?.enabled = true
+        chartView.chartDescription?.font = .systemFont(ofSize: 10)
+        chartView.chartDescription?.text = "Powered by Darksky.net"
+        chartView.chartDescription?.position = CGPoint(x: 138, y: 3)
+        chartView.extraTopOffset = 20
         let rightAxis = chartView.rightAxis
         rightAxis.labelTextColor = .blue
         rightAxis.axisMinimum = 0.0
@@ -68,23 +90,6 @@ class FlytimeViewController: UIViewController {
         marker.minimumSize = CGSize(width: 80, height: 40)
         chartView.marker = marker
 
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    func setChartView() {
-        chartView.pinchZoomEnabled = false
-        chartView.doubleTapToZoomEnabled = false
-        chartView.setScaleEnabled(false)
-        chartView.xAxis.labelPosition = .bottom
-        chartView.backgroundColor = UIColor(red:0.98, green:0.98, blue:0.98, alpha:1.0)
-        chartView.chartDescription?.enabled = true
-        chartView.chartDescription?.font = .systemFont(ofSize: 10)
-        chartView.chartDescription?.text = "Powered by Darksky.net"
-        chartView.chartDescription?.position = CGPoint(x: 138, y: 3)
-        chartView.extraTopOffset = 20
     }
     
     func setLineCharts(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double], valuesPrecip: [Double], labelPrecip: String) {

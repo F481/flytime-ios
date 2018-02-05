@@ -8,7 +8,7 @@
 // TODO not yet full REST, CoreDAta, ...
 //
 // API CALL OVER SERVER, server must be Online,
-// API CAALL OVER DARKSKY, needs USERKEY
+// API CAALL OVER DARKSKY, needs APIKEY
 
 import Foundation
 import UIKit
@@ -21,7 +21,7 @@ class DataHandler {
     var sunsetTimeTomorrow: Int!
 
     func getDataFromApi (latitude: Double, longitude: Double) {
-        var jsonUrlString = "https://api.darksky.net/forecast/f50991eac3c2d230718d000c52aa96f7/"
+        var jsonUrlString = "https://api.darksky.net/forecast/APIKEY/"
             jsonUrlString.append(String(latitude))
             jsonUrlString.append(",")
             jsonUrlString.append(String(longitude))

@@ -238,28 +238,31 @@ class FlytimeViewController: UIViewController {
         var bestCount: Int = 1
         var windSpeedMax: Double = valuesWind.max()!
         if windSpeedMax >= 10 {
-            windSpeedMax  = 10
+            windSpeedMax = 10
         }
         let windSpeedMin: Double = valuesWind.min()!
         var dataEntriesFlyTime: [ChartDataEntry] = []
         
+        // start from 1, because with 0 -> i+1 we'll receive a "Index out of range" error
         for i in 1..<dataPoints.count {
             var countBestFlytime: Int = 0
+            // calculate average on the actual time frame (normally hour) based on twoe corresponding points
             let varWind: Double = (valuesWind[i-1]+valuesWind[i])/2
             let varPrecip: Double = (valuesPrecip[i-1]+valuesPrecip[i])/2
             let varTemp: Double = (valuesTemp[i-1]+valuesTemp[i])/2
-            //Calcualtes Wind
+            
+            // calculate points for wind attribute (double weight, but only two-point range)
             if varWind <= windSpeedMax {
-                if varWind < windSpeedMin * 1.25 {
+                if varWind < windSpeedMin * 1.5 {
                     countBestFlytime += 4
                     print("wind2 ")
-                }else if varWind < windSpeedMin * 1.5  {
+                }else if varWind < windSpeedMin * 1.9  {
                     countBestFlytime += 2
                     print("wind1 ")
                 }
             }
 
-            // calcualtes Temperature
+            // calcualte points for temperature attribute (single weight)
             if varTemp >= 8 && varTemp <= 25 {
                 if varTemp <= 16 {
                     countBestFlytime += 2
@@ -273,21 +276,22 @@ class FlytimeViewController: UIViewController {
                 print("temp1 ")
             }
             
-            // Calcualtes Precip
+            // calculate points for precip attribute (double weight, three-point range)
+            if varPrecip > 0.7 { countBestFlytime = -1 }
+            
             if varPrecip <= 0.6 {
                 if varPrecip <= 0.2 {
                     countBestFlytime += 6
                     print("precip3 ")
-                }else if varPrecip <= 0.35 {
+                }else if varPrecip <= 0.4 {
                     countBestFlytime += 4
                     print("precip2 ")
                 } else {
                     countBestFlytime += 2
                     print("precip1 ")
                 }
-            } else {
-                countBestFlytime = -1
             }
+            
             if countBestFlytime > bestCount {
                 bestCount = countBestFlytime
             }

@@ -64,6 +64,8 @@ class FlytimeViewController: UIViewController {
                 activityIndicator.stopAnimating()
                 addWeatherToday()
                 setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
+                // TODO work this out, no refresh
+                chartView.notifyDataSetChanged()
                 whileFlag = false
             }
             // TODO Exception Handling, no Connection

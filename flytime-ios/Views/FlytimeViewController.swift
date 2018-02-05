@@ -10,18 +10,36 @@ import Charts
 import CoreLocation
 
 class FlytimeViewController: UIViewController {
+    // holds lineChartDataSets ( Wind, Temp, Precip )
     var lineChartData: LineChartData?
+    
+    // holds the Weahter Data for a time Periode
     var times: [Int] = [0]
     var wind: [Double] = [0.0]
-    var whileFlag: Bool = true
     var temprature: [Double] = [0.0]
     var precip: [Double] = [0.0]
+    
+    // TODO change with nicer Code, should be gone
+    var whileFlag: Bool = true
+    
+    // instance of DataHandler
     let datahandler = DataHandler()
+    
+    // holds complete Weather Data
     var weatherData: WeatherData!
+    
+    // activity indicator for data fetching
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
+    
+    // Segmented Controll for the days
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
+    
+    // Instanz of the Chart View
     @IBOutlet weak var chartView: CombinedChartView!
+    
+    // Textfield for weather summary
     @IBOutlet weak var textfield: UITextView!
+    
     
     @IBAction func daySegmentedAction(_ sender: Any) {
         NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)

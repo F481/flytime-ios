@@ -268,7 +268,7 @@ class FlytimeViewController: UIViewController {
         uiView.addSubview(activityIndicator)
         activityIndicator.startAnimating()
     }
-    
+    // Calculates the Best Fly Time and sets the Linechart
     // Function for BestFlytime it works TODO KI-Classifer
     func setBestFlyTime (dataPoints: [Int], valuesWind: [Double], valuesPrecip: [Double], valuesTemp: [Double]) {
         var results: [Result] = []
@@ -331,9 +331,7 @@ class FlytimeViewController: UIViewController {
             print(countBestFlytime)
             
             let dataEntryFlyTime1 = ChartDataEntry(x: Double(dataPoints[i-1]), y: 0)
-            //dataEntriesFlyTime.append(dataEntryFlyTime1)
             let dataEntryFlyTime2 = ChartDataEntry(x: Double(dataPoints[i]), y: 0)
-            //dataEntriesFlyTime.append(dataEntryFlyTime2)
             results.append(Result(countBestFlyTime: countBestFlytime, firstEntry: dataEntryFlyTime1, secondEntry: dataEntryFlyTime2))
         }
         for result in results {
@@ -346,7 +344,7 @@ class FlytimeViewController: UIViewController {
         }
 
 
-        
+        // Setes Line Chart
         let lineChartDataSetBestFlyTime = LineChartDataSet(values: dataEntriesFlyTime, label: "Flytime [%]")
         lineChartDataSetBestFlyTime.axisDependency = .right
         lineChartDataSetBestFlyTime.setColor(UIColor(red: 240, green: 5, blue: 160, alpha: 0.7))

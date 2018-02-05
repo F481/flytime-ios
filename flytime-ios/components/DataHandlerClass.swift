@@ -2,8 +2,8 @@
 //  File.swift
 //  flytime-ios
 //
-//  Created by KOENIG on 28.11.17.
-//  Copyright © 2017 KOENIG. All rights reserved.
+//  Created by FRICK ; KOENIG on 23.11.17.
+//
 // http://84.128.118.79/getWeatherData.php?lat=47.81008&lng=9.63863 -> WeatherAPICall
 //https://api.darksky.net/forecast/30f124e4a15b39ed59823c1e116b99fa/47.81009,9.63863?units=auto&lang=de&exclude=minutely
 

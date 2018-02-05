@@ -2,9 +2,10 @@
 //  WeatherDataStruct.swift
 //  flytime-ios
 //
-//  Created by KOENIG on 28.11.17.
-//  Copyright © 2017 KOENIG. All rights reserved.
+//  Created by FRICK ; KOENIG on 23.11.17.
 //
+// Struct for the Weather Data
+// Codable for JSON Parsing
 
 import Foundation
 import Charts

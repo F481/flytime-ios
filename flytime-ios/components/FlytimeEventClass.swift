@@ -2,10 +2,10 @@
 //  File.swift
 //  flytime-ios
 //
-//  Created by KOENIG on 07.11.17.
-//  Copyright © 2017 KOENIG. All rights reserved.
+//  Created by FRICK ; KOENIG on 23.11.17.
 //
-
+// Class for the Events and Locations
+// TODO as goog as everything
 import Foundation
 import MapKit
 

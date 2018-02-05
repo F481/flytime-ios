@@ -2,10 +2,10 @@
 //  MapController.swift
 //  flytime-ios
 //
-//  Created by KOENIG on 07.11.17.
-//  Copyright © 2017 KOENIG. All rights reserved.
+//  Created by FRICK ; KOENIG on 23.11.17.
 //
-
+// Map View
+// handels Eventes on Map
 import UIKit
 import MapKit
 import CoreLocation

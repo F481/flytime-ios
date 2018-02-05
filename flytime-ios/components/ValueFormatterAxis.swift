@@ -2,10 +2,11 @@
 //  File.swift
 //  flytime-ios
 //
-//  Created by KOENIG on 24.11.17.
-//  Copyright © 2017 KOENIG. All rights reserved.
+//  Created by FRICK ; KOENIG on 23.11.17.
 //
-
+// Sets the Time Labes for the X-axis
+// EEEEEE = Mon, Thu...
+// HH = 12, 13...
 import Foundation
 import Charts
 

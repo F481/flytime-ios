@@ -31,6 +31,7 @@ class DataHandler {
         let task = session.dataTask(with: url) {(data, _, _) in
             guard let data = data else { return }
             do {
+                // saves the responded data in the Weather Struct, Nice to have 
                 self.weatherData = try JSONDecoder().decode(WeatherData.self, from: data)
                 self.sunriseTimeToday = self.weatherData.daily.data[0].sunriseTime-3600
                 self.sunsetTimeToday = self.weatherData.daily.data[0].sunsetTime+3600

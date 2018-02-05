@@ -4,7 +4,8 @@
 //
 //  Created by FRICK ; KOENIG on 23.11.17.
 //
-
+// Class for the Events and Locations
+// TODO as goog as everything
 import Foundation
 import MapKit
 

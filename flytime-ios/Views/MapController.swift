@@ -4,7 +4,8 @@
 //
 //  Created by FRICK ; KOENIG on 23.11.17.
 //
-
+// Map View
+// handels Eventes on Map
 import UIKit
 import MapKit
 import CoreLocation

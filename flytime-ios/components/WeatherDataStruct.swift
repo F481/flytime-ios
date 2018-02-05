@@ -4,6 +4,9 @@
 //
 //  Created by FRICK ; KOENIG on 23.11.17.
 //
+// Struct for the Weather Data
+// Codable for JSON Parsing
+
 import Foundation
 import Charts
 struct WeatherData: Codable {

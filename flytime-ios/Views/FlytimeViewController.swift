@@ -31,18 +31,18 @@ class FlytimeViewController: UIViewController {
     // activity indicator for data fetching
     let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView()
     
-    // Segmented Controll for the days
+    // Segmented Control for the days
     @IBOutlet weak var daySegmentedOutlet: UISegmentedControl!
     
-    // Instanz of the Chart View
+    // Instanz of the Chart View from: Chart Framework
     @IBOutlet weak var chartView: CombinedChartView!
     
     // Textfield for weather summary
     @IBOutlet weak var textfield: UITextView!
     
-    
+    //
     @IBAction func daySegmentedAction(_ sender: Any) {
-        NSLog("selectes Segment = %1d", daySegmentedOutlet.selectedSegmentIndex)
+        NSLog("selectSegment = %1d", daySegmentedOutlet.selectedSegmentIndex)
         if daySegmentedOutlet.selectedSegmentIndex == 2 {
             addWeatherWeek()
             setBestFlyTime(dataPoints: times, valuesWind: wind, valuesPrecip: precip, valuesTemp: temprature)
@@ -83,7 +83,7 @@ class FlytimeViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+    // initiales the ChartView ( size, layout, settings, marker)
     func setChartView() {
         chartView.pinchZoomEnabled = false
         chartView.doubleTapToZoomEnabled = false
@@ -109,7 +109,7 @@ class FlytimeViewController: UIViewController {
         chartView.marker = marker
 
     }
-    
+    // fills the DataSets. Called by addWeather Functions. called by addWeather Functions
     func setLineCharts(dataPoints: [Int], valuesTemp: [Double], valuesWind: [Double], valuesPrecip: [Double], labelPrecip: String) {
 
         var dataEntriesTemp: [ChartDataEntry] = []
@@ -137,6 +137,7 @@ class FlytimeViewController: UIViewController {
         chartView.data = lineChartData
         chartView.xAxis.setLabelCount(times.count, force: true)
     }
+    // Sets the properties for the Lines
     func setPropsLineChartDataSet (lineChartDataSet: LineChartDataSet, color: UIColor){
         lineChartDataSet.setColor(color)
         lineChartDataSet.lineWidth = 2.5
@@ -145,6 +146,7 @@ class FlytimeViewController: UIViewController {
         lineChartDataSet.circleColors = [color]
         lineChartDataSet.mode = .cubicBezier
     }
+    // Sets the precip label (Schnee, Regen, oder Hagel + wahrsch. [%])
     func setPrecipLabel(day: Int) -> String {
         var precipLabel: String = "kein Niederschlag"
         
@@ -170,12 +172,15 @@ class FlytimeViewController: UIViewController {
         return precipLabel
     }
     
+    // clears WeahterDatas for a time periode
     func clearWeatherData() {
         times.removeAll()
         wind.removeAll()
         temprature.removeAll()
         precip.removeAll()
     }
+    
+    // fill weatherData for  today. called by addWeatherToday
     func fillWeatherDataTodayHours() {
         for hours in weatherData.hourly.data {
             if hours.time >= datahandler.sunriseTimeToday && hours.time <= datahandler.sunsetTimeToday{
@@ -186,6 +191,8 @@ class FlytimeViewController: UIViewController {
             }
         }
     }
+    
+    // fill weatherData for tomorrow. called by addWeatherTomorrow
     func fillWeatherDataTomorrowHours() {
         for hours in weatherData.hourly.data {
             if hours.time >= datahandler.sunriseTimeTomorrow && hours.time <= datahandler.sunsetTimeTomorrow{
@@ -196,6 +203,8 @@ class FlytimeViewController: UIViewController {
             }
         }
     }
+    
+    // fill weatherData for the week. called by addWeatherWeek
     func fillWeatherDataDays() {
         for days in weatherData.daily.data {
             if days.time != nil{
@@ -206,7 +215,7 @@ class FlytimeViewController: UIViewController {
             }
         }
     }
-
+    // fills charDataSets, sets x-Axis time Labels, refresh the ChartView. called by Segmeted Cotrol
     func addWeatherToday() {
         clearWeatherData()
         fillWeatherDataTodayHours()
@@ -224,6 +233,8 @@ class FlytimeViewController: UIViewController {
         chartView.xAxis.valueFormatter = DateValueFormatterHour()
         chartView.notifyDataSetChanged()
     }
+    
+    // fills charDataSets, sets x-Axis time Labels, refresh the ChartView. called by Segmeted Cotrol
     func addWeatherTomorrow() {
         clearWeatherData()
         fillWeatherDataTomorrowHours()
@@ -235,6 +246,8 @@ class FlytimeViewController: UIViewController {
         chartView.notifyDataSetChanged()
 
     }
+    
+    // fills charDataSets, sets x-Axis time Labels, refresh the ChartView. called by Segmeted Cotrol
     func addWeatherWeek() {
         clearWeatherData()
         fillWeatherDataDays()
@@ -244,6 +257,7 @@ class FlytimeViewController: UIViewController {
         chartView.notifyDataSetChanged()
     }
     
+    // Initiales the Activity Indicator and Starts it
     func showActivityIndicatory(uiView: UIView) {
         chartView.noDataText = "Fetching Data..."
         activityIndicator.frame = CGRect(x: 0.0, y: 0.0, width: 50.0, height: 50.0)
@@ -255,7 +269,7 @@ class FlytimeViewController: UIViewController {
         activityIndicator.startAnimating()
     }
     
-    // Function for BestFlytime it works but nice algorythm would be nice
+    // Function for BestFlytime it works TODO KI-Classifer
     func setBestFlyTime (dataPoints: [Int], valuesWind: [Double], valuesPrecip: [Double], valuesTemp: [Double]) {
         var results: [Result] = []
         var bestCount: Int = 1
